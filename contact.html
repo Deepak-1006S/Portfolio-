@@ -1,0 +1,501 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact — Deepak S</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        /* ── Contact layout ──────────────────────────────── */
+        .contact-grid {
+            display: grid;
+            grid-template-columns: 1fr 1.3fr;
+            gap: 52px;
+            align-items: start;
+        }
+
+        .contact-intro {
+            font-size: 1.03rem;
+            color: var(--text-muted);
+            line-height: 1.85;
+            margin-bottom: 38px;
+            max-width: 680px;
+        }
+
+        .contact-cards {
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+            margin-bottom: 38px;
+        }
+
+        .contact-card {
+            display: flex;
+            align-items: center;
+            gap: 18px;
+            background: rgba(255,255,255,0.04);
+            border: 1px solid rgba(255,255,255,0.1);
+            border-radius: 22px;
+            padding: 20px 24px;
+            text-decoration: none;
+            color: inherit;
+            cursor: pointer;
+            transition: border-color 0.25s, transform 0.25s, background 0.25s, box-shadow 0.25s;
+            position: relative;
+            box-shadow: 0 18px 42px rgba(0,0,0,0.14);
+            backdrop-filter: blur(16px);
+        }
+        .contact-card:hover {
+            border-color: rgba(59,130,246,0.35);
+            transform: translateX(4px);
+            background: rgba(59,130,246,0.08);
+            box-shadow: 0 26px 56px rgba(0,0,0,0.2);
+        }
+        .cc-icon {
+            width: 50px; height: 50px;
+            border-radius: 16px;
+            display: flex; align-items: center; justify-content: center;
+            flex-shrink: 0;
+        }
+        .cc-icon.blue   { background: rgba(59,130,246,0.15); border: 1px solid rgba(59,130,246,0.2); }
+        .cc-icon.green  { background: rgba(16,185,129,0.15); border: 1px solid rgba(16,185,129,0.2); }
+        .cc-icon.orange { background: rgba(249,115,22,0.15); border: 1px solid rgba(249,115,22,0.2); }
+
+        .cc-label {
+            font-family: var(--font-mono);
+            font-size: 0.72rem;
+            color: var(--text-dim);
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            margin-bottom: 4px;
+        }
+        .cc-value {
+            font-size: 0.95rem;
+            font-weight: 700;
+            color: var(--text);
+        }
+
+        .cc-copy {
+            position: absolute;
+            right: 18px;
+            font-family: var(--font-mono);
+            font-size: 0.72rem;
+            color: var(--text-dim);
+            letter-spacing: 0.5px;
+            opacity: 0;
+            transition: opacity 0.25s;
+        }
+        .contact-card:hover .cc-copy { opacity: 1; }
+
+        .avail-banner {
+            background: linear-gradient(135deg, rgba(16,185,129,0.08), rgba(59,130,246,0.08));
+            border: 1px solid rgba(59,130,246,0.18);
+            border-radius: 24px;
+            padding: 24px 26px;
+            display: flex;
+            align-items: flex-start;
+            gap: 16px;
+            box-shadow: inset 0 0 0 1px rgba(255,255,255,0.03);
+            backdrop-filter: blur(16px);
+        }
+        .avail-dot {
+            width: 12px; height: 12px;
+            border-radius: 50%;
+            background: var(--green);
+            box-shadow: 0 0 10px rgba(16,185,129,0.7);
+            flex-shrink: 0;
+            margin-top: 6px;
+        }
+        .avail-title {
+            font-weight: 700;
+            font-size: 0.98rem;
+            color: var(--text);
+            margin-bottom: 6px;
+        }
+        .avail-sub {
+            font-size: 0.9rem;
+            color: var(--text-muted);
+            line-height: 1.8;
+        }
+
+        .form-card {
+            background: rgba(255,255,255,0.04);
+            border: 1px solid rgba(255,255,255,0.1);
+            border-radius: 28px;
+            padding: 40px;
+            box-shadow: 0 28px 70px rgba(0,0,0,0.18);
+            backdrop-filter: blur(18px);
+        }
+        .form-card-title {
+            font-family: var(--font-display);
+            font-size: 1.45rem;
+            font-weight: 800;
+            color: var(--text);
+            margin-bottom: 8px;
+        }
+        .form-card-sub {
+            font-size: 0.92rem;
+            color: var(--text-muted);
+            margin-bottom: 30px;
+            line-height: 1.7;
+        }
+
+        .form-group label {
+            font-size: 0.82rem;
+            font-weight: 700;
+            color: var(--text-dim);
+            letter-spacing: 0.5px;
+            margin-bottom: 8px;
+        }
+        .form-group input,
+        .form-group textarea,
+        .form-group select {
+            width: 100%;
+            background: rgba(255,255,255,0.04);
+            border: 1px solid rgba(255,255,255,0.1);
+            border-radius: 16px;
+            padding: 14px 16px;
+            color: var(--text);
+            font-family: var(--font-body);
+            font-size: 0.95rem;
+            outline: none;
+            transition: border-color 0.25s, box-shadow 0.25s;
+            appearance: none;
+        }
+        .form-group input::placeholder,
+        .form-group textarea::placeholder {
+            color: var(--text-dim);
+        }
+        .form-group input:focus,
+        .form-group textarea:focus,
+        .form-group select:focus {
+            border-color: var(--blue);
+            box-shadow: 0 0 0 4px rgba(59,130,246,0.12);
+        }
+        .form-group textarea {
+            resize: vertical;
+            min-height: 150px;
+        }
+
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 18px;
+        }
+
+        .form-submit {
+            width: 100%;
+            padding: 16px;
+            font-size: 0.95rem;
+            border-radius: 14px;
+            margin-top: 10px;
+            justify-content: center;
+        }
+
+        .form-success {
+            display: none;
+            text-align: center;
+            padding: 40px 20px;
+        }
+        .form-success.visible { display: block; }
+        .success-icon {
+            width: 56px; height: 56px;
+            border-radius: 50%;
+            background: rgba(16,185,129,0.12);
+            border: 2px solid rgba(16,185,129,0.3);
+            display: flex; align-items: center; justify-content: center;
+            margin: 0 auto 16px;
+        }
+        .success-title {
+            font-family: var(--font-display);
+            font-size: 1.2rem;
+            font-weight: 700;
+            color: var(--text);
+            margin-bottom: 8px;
+        }
+        .success-text {
+            font-size: 0.9rem;
+            color: var(--text-muted);
+        }
+
+        .hire-cta {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 20px;
+            background: rgba(255,255,255,0.05);
+            border: 1px solid rgba(255,255,255,0.12);
+            border-radius: 28px;
+            padding: 30px 34px;
+            margin-top: 64px;
+            box-shadow: 0 24px 60px rgba(0,0,0,0.18);
+            backdrop-filter: blur(16px);
+        }
+        .hire-cta-title {
+            font-family: var(--font-display);
+            font-size: 1.55rem;
+            font-weight: 800;
+            color: var(--text);
+            margin-bottom: 6px;
+        }
+        .hire-cta-sub {
+            font-size: 0.95rem;
+            color: var(--text-muted);
+            line-height: 1.75;
+        }
+
+        @media (max-width: 900px) {
+            .contact-grid {
+                grid-template-columns: 1fr;
+                gap: 40px;
+            }
+            .form-row {
+                grid-template-columns: 1fr;
+            }
+            .hire-cta {
+                flex-direction: column;
+                text-align: center;
+                gap: 24px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- ═══ HEADER / NAV ═══════════════════════════════════ -->
+    <header class="site-header">
+        <div class="nav-inner">
+            <a href="index.html" class="logo">DEEPAK<span class="dot">.</span>S</a>
+            <nav class="nav-links" aria-label="Main navigation">
+                <a href="index.html"    class="nav-link" data-page="index">Home</a>
+                <a href="about.html"    class="nav-link" data-page="about">About</a>
+                <a href="projects.html" class="nav-link" data-page="projects">Projects</a>
+                <a href="skills.html"   class="nav-link" data-page="skills">Skills</a>
+                <a href="certifications.html" class="nav-link" data-page="certifications">Certifications</a>
+                <a href="contact.html"  class="nav-link nav-cta" data-page="contact">Hire Me</a>
+            </nav>
+            <button class="hamburger" id="hamburger" aria-label="Toggle menu">
+                <span></span><span></span><span></span>
+            </button>
+        </div>
+        <nav class="mobile-menu" id="mobileMenu" aria-label="Mobile navigation">
+            <a href="index.html"    class="mobile-nav-link" data-page="index">Home</a>
+            <a href="about.html"    class="mobile-nav-link" data-page="about">About</a>
+            <a href="projects.html" class="mobile-nav-link" data-page="projects">Projects</a>
+            <a href="skills.html"   class="mobile-nav-link" data-page="skills">Skills</a>
+            <a href="certifications.html" class="mobile-nav-link" data-page="certifications">Certifications</a>
+            <a href="contact.html"  class="mobile-nav-link" data-page="contact">Contact / Hire Me</a>
+        </nav>
+    </header>
+
+    <!-- ═══ MAIN ════════════════════════════════════════════ -->
+    <div class="page-wrapper">
+        <main>
+            <!-- Page hero band -->
+            <div class="page-hero">
+                <div class="container">
+                    <span class="label anim-1">Get In Touch</span>
+                    <h1 class="heading anim-2">Let's build something<br><em>great together</em></h1>
+                    <div class="divider anim-3"></div>
+                </div>
+            </div>
+
+            <section class="section">
+                <div class="container">
+                    <div class="contact-grid">
+                        <!-- Left: info -->
+                        <div class="contact-info">
+                            <p class="contact-intro anim-1">
+                                Currently seeking Software Engineering Internship and Software Engineer (Fresher) opportunities. Open to Full Stack Developer and Frontend Developer roles.
+                                Whether you have a project in mind or just want to say hello — reach out through any channel below, or fill out the form.
+                            </p>
+
+                            <div class="contact-cards anim-2">
+                                <a href="mailto:deepak1006.dev@gmail.com?subject=Job%20Opportunity%20/%20Internship%20Inquiry"
+                                   class="contact-card">
+                                    <div class="cc-icon blue">
+                                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#60a5fa" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+                                    </div>
+                                    <div class="cc-body">
+                                        <div class="cc-label">Email</div>
+                                        <div class="cc-value">deepak1006.dev@gmail.com</div>
+                                    </div>
+                                    <div class="cc-copy">Send email →</div>
+                                </a>
+
+                                <a href="https://www.linkedin.com/in/deepak-s1006/" target="_blank" class="contact-card">
+                                    <div class="cc-icon blue">
+                                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#60a5fa" stroke-width="2"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6zM2 9h4v12H2z"/><circle cx="4" cy="4" r="2"/></svg>
+                                    </div>
+                                    <div class="cc-body">
+                                        <div class="cc-label">LinkedIn</div>
+                                        <div class="cc-value">linkedin.com/in/deepak-s1006</div>
+                                    </div>
+                                    <div class="cc-copy">View profile →</div>
+                                </a>
+
+                                <a href="https://github.com/Deepak-1006S" target="_blank" class="contact-card">
+                                    <div class="cc-icon orange">
+                                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#fb923c" stroke-width="2"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/></svg>
+                                    </div>
+                                    <div class="cc-body">
+                                        <div class="cc-label">GitHub</div>
+                                        <div class="cc-value">github.com/Deepak-1006S</div>
+                                    </div>
+                                    <div class="cc-copy">View profile →</div>
+                                </a>
+
+                                <a href="https://www.hackerrank.com/profile/deepaksureshde1" target="_blank" class="contact-card">
+                                    <div class="cc-icon green">
+                                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#34d399" stroke-width="2"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg>
+                                    </div>
+                                    <div class="cc-body">
+                                        <div class="cc-label">HackerRank</div>
+                                        <div class="cc-value">hackerrank.com/deepaksureshde1</div>
+                                    </div>
+                                    <div class="cc-copy">View profile →</div>
+                                </a>
+
+                                <a href="public/Deepak_S Resume.pdf" download class="contact-card">
+                                    <div class="cc-icon blue">
+                                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#60a5fa" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="12" y1="18" x2="12" y2="12"/><line x1="9" y1="15" x2="15" y2="15"/></svg>
+                                    </div>
+                                    <div class="cc-body">
+                                        <div class="cc-label">Resume</div>
+                                        <div class="cc-value">Download Resume PDF</div>
+                                    </div>
+                                    <div class="cc-copy">Download →</div>
+                                </a>
+
+                                <div class="contact-card"
+                                     onclick="navigator.clipboard.writeText('Chennai, Tamil Nadu, India').then(()=> showCopied(this, 'Location copied!'))">
+                                    <div class="cc-icon green">
+                                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#34d399" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+                                    </div>
+                                    <div class="cc-body">
+                                        <div class="cc-label">Location</div>
+                                        <div class="cc-value">Chennai, Tamil Nadu, India</div>
+                                    </div>
+                                    <div class="cc-copy">Click to copy</div>
+                                </div>
+                            </div>
+
+                            <div class="avail-banner anim-3">
+                                <div class="avail-dot"></div>
+                                <div class="avail-text">
+                                    <div class="avail-title">Currently Open To</div>
+                                    <div class="avail-sub">Software Engineering Internship • Software Engineer (Fresher) • Full Stack Developer • Frontend Developer</div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Right: form -->
+                        <div class="contact-form-wrap anim-4">
+                            <div class="form-card">
+                                <div class="form-card-title">Send a Message</div>
+                                <div class="form-card-sub">Fill out the form and Deepak will respond within 24 hours.</div>
+
+                                <div id="formSuccess" class="form-success">
+                                    <div class="success-icon">
+                                        <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#34d399" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+                                    </div>
+                                    <div class="success-title">Message Sent!</div>
+                                    <div class="success-text">Thanks for reaching out. Deepak will get back to you shortly.</div>
+                                </div>
+
+                                <form id="contactForm" novalidate>
+                                    <div class="form-row">
+                                        <div class="form-group">
+                                            <label for="name">Your Name</label>
+                                            <input type="text" id="name" name="name" placeholder="Full name" required>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="email">Email Address</label>
+                                            <input type="email" id="email" name="email" placeholder="you@company.com" required>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="subject">Subject</label>
+                                        <select id="subject" name="subject">
+                                            <option value="">Select a topic...</option>
+                                            <option value="internship">Internship Opportunity</option>
+                                            <option value="job">Job Offer / Full-time Role</option>
+                                            <option value="freelance">Freelance Project</option>
+                                            <option value="collaboration">Collaboration</option>
+                                            <option value="other">Other</option>
+                                        </select>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="message">Message</label>
+                                        <textarea id="message" name="message" placeholder="Tell me about the opportunity or project..." required></textarea>
+                                    </div>
+                                    <button type="submit" class="btn btn-green btn-lg form-submit">
+                                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
+                                        Send Message
+                                    </button>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Bottom hire CTA -->
+                    <div class="hire-cta anim-5">
+                        <div class="hire-cta-left">
+                            <div class="hire-cta-title">Ready to hire me?</div>
+                            <div class="hire-cta-sub">Drop a direct email for the fastest response — internship or freelance, all inquiries welcome.</div>
+                        </div>
+                        <a href="mailto:deepak1006.dev@gmail.com?subject=Job%20Opportunity%20%2F%20Internship%20Inquiry&body=Hi%20Deepak%2C%20we%20reviewed%20your%20portfolio%20and%20would%20love%20to%20discuss..."
+                           class="btn btn-green btn-lg" style="flex-shrink:0;">
+                            Email Directly
+                        </a>
+                    </div>
+                </div>
+            </section>
+        </main>
+
+        <footer class="site-footer">
+            <p>deepak<span style="color:var(--blue)">.</span>s &mdash; built with precision &nbsp;|&nbsp; <a href="mailto:deepak1006.dev@gmail.com">deepak1006.dev@gmail.com</a></p>
+        </footer>
+    </div>
+
+    <script src="nav.js"></script>
+    <script src="assets/js/biodata.js"></script>
+    <script src="assets/js/ui.js" defer></script>
+    <script>
+        // Simple form handler (mailto fallback without backend)
+        document.getElementById('contactForm').addEventListener('submit', function (e) {
+            e.preventDefault();
+            const name    = document.getElementById('name').value.trim();
+            const email   = document.getElementById('email').value.trim();
+            const subject = document.getElementById('subject').value;
+            const message = document.getElementById('message').value.trim();
+
+            if (!name || !email || !message) {
+                alert('Please fill in all required fields.');
+                return;
+            }
+
+            // Compose mailto
+            const subjectLine = subject
+                ? encodeURIComponent('[Portfolio Contact] ' + document.getElementById('subject').options[document.getElementById('subject').selectedIndex].text)
+                : encodeURIComponent('[Portfolio Contact] Message from ' + name);
+            const body = encodeURIComponent('Name: ' + name + '\nEmail: ' + email + '\n\n' + message);
+            window.location.href = 'mailto:deepak1006.dev@gmail.com?subject=' + subjectLine + '&body=' + body;
+
+            // Show success state
+            document.getElementById('contactForm').style.display = 'none';
+            document.getElementById('formSuccess').classList.add('visible');
+        });
+
+        function showCopied(el, msg) {
+            const copy = el.querySelector('.cc-copy');
+            const original = copy.textContent;
+            copy.textContent = msg;
+            copy.style.color = 'var(--green)';
+            setTimeout(() => {
+                copy.textContent = original;
+                copy.style.color = '';
+            }, 2000);
+        }
+    </script>
+</body>
+</html>

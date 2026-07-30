@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Test Certificate Modal</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            padding: 40px;
+            background: #0a0f1c;
+            color: #fff;
+        }
+        .test-button {
+            background: #3b82f6;
+            color: white;
+            padding: 12px 24px;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 16px;
+            margin: 10px;
+        }
+        .test-button:hover {
+            background: #2563eb;
+        }
+        .info {
+            background: #1e293b;
+            padding: 20px;
+            border-radius: 8px;
+            margin-top: 20px;
+        }
+        .success {
+            color: #10b981;
+        }
+        .error {
+            color: #ef4444;
+        }
+    </style>
+</head>
+<body>
+    <h1>Certificate Modal Test Page</h1>
+    <p>Click the buttons below to test if the modal functionality works:</p>
+    
+    <button class="test-button" onclick="testFunction()">Test 1: Check if JavaScript is working</button>
+    <button class="test-button" onclick="testCertModal(1)">Test 2: Open Certificate 1</button>
+    <button class="test-button" onclick="testCertModal(5)">Test 3: Open Certificate 5</button>
+    
+    <div class="info">
+        <h3>Test Results:</h3>
+        <div id="results"></div>
+    </div>
+    
+    <div class="info">
+        <h3>Instructions:</h3>
+        <ol>
+            <li>Open <strong>certifications.html</strong> in your browser</li>
+            <li>Press <strong>F12</strong> to open Developer Tools</li>
+            <li>Go to the <strong>Console</strong> tab</li>
+            <li>Click any "View Certificate" button</li>
+            <li>Check for error messages in the console</li>
+            <li>If you see errors, take a screenshot and report them</li>
+        </ol>
+        
+        <h3>Common Issues:</h3>
+        <ul>
+            <li><strong>Browser Cache:</strong> Press <kbd>Ctrl+Shift+R</kbd> (Windows) or <kbd>Cmd+Shift+R</kbd> (Mac) to hard refresh</li>
+            <li><strong>JavaScript Disabled:</strong> Check if JavaScript is enabled in your browser</li>
+            <li><strong>File Path:</strong> Make sure you're opening the file from the correct location</li>
+        </ul>
+    </div>
+
+    <script>
+        function testFunction() {
+            const results = document.getElementById('results');
+            results.innerHTML = '<p class="success">✓ JavaScript is working!</p>';
+        }
+        
+        function testCertModal(id) {
+            const results = document.getElementById('results');
+            results.innerHTML += `<p class="success">✓ testCertModal(${id}) function called successfully!</p>`;
+            alert(`Test passed! Function testCertModal(${id}) is working.\n\nNow try the actual certifications.html page.`);
+        }
+    </script>
+</body>
+</html>

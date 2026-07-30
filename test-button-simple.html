@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Button Test - Certificate Modal</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            padding: 40px;
+            background: #0a0f1c;
+            color: #fff;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        h1 {
+            color: #3b82f6;
+            margin-bottom: 30px;
+        }
+        
+        .test-section {
+            background: #1e293b;
+            padding: 30px;
+            border-radius: 12px;
+            margin-bottom: 30px;
+            border: 1px solid #334155;
+        }
+        
+        .test-button {
+            background: #3b82f6;
+            color: white;
+            padding: 12px 24px;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 16px;
+            margin: 10px 10px 10px 0;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .test-button:hover {
+            background: #2563eb;
+        }
+        
+        .success {
+            color: #10b981;
+            font-weight: bold;
+        }
+        
+        .error {
+            color: #ef4444;
+            font-weight: bold;
+        }
+        
+        .info {
+            background: #334155;
+            padding: 15px;
+            border-radius: 8px;
+            margin-top: 20px;
+            font-size: 14px;
+            line-height: 1.6;
+        }
+        
+        .code {
+            background: #0f172a;
+            padding: 2px 8px;
+            border-radius: 4px;
+            font-family: 'Courier New', monospace;
+            color: #60a5fa;
+        }
+        
+        #testResults {
+            margin-top: 20px;
+            padding: 15px;
+            background: #0f172a;
+            border-radius: 8px;
+            font-family: 'Courier New', monospace;
+            font-size: 13px;
+            min-height: 100px;
+        }
+        
+        .step {
+            margin: 15px 0;
+            padding-left: 20px;
+        }
+        
+        .step::before {
+            content: '→';
+            margin-right: 10px;
+            color: #3b82f6;
+        }
+    </style>
+</head>
+<body>
+    <h1>🔧 Certificate Modal Button Test</h1>
+    
+    <div class="test-section">
+        <h2>Step 1: Test Basic JavaScript</h2>
+        <p>Click this button to verify JavaScript is working:</p>
+        <button class="test-button" onclick="testBasicJS()">
+            ✓ Test JavaScript
+        </button>
+        <div id="basicTest"></div>
+    </div>
+    
+    <div class="test-section">
+        <h2>Step 2: Test Function Existence</h2>
+        <p>Check if the modal functions exist:</p>
+        <button class="test-button" onclick="checkFunctions()">
+            🔍 Check Functions
+        </button>
+        <div id="functionTest"></div>
+    </div>
+    
+    <div class="test-section">
+        <h2>Step 3: Test Actual Modal (Open certifications.html)</h2>
+        <p>Now open <span class="code">certifications.html</span> and follow these steps:</p>
+        
+        <div class="step">
+            <strong>1.</strong> Open certifications.html in your browser
+        </div>
+        <div class="step">
+            <strong>2.</strong> Press <span class="code">F12</span> to open Developer Tools
+        </div>
+        <div class="step">
+            <strong>3.</strong> Go to the <span class="code">Console</span> tab
+        </div>
+        <div class="step">
+            <strong>4.</strong> You should see verification messages like:
+            <div class="info">
+                <span class="success">✓ Page loaded. Verifying components...</span><br>
+                <span class="success">✓ Certificates data loaded: 9 certificates</span><br>
+                <span class="success">✓ Modal element found</span><br>
+                <span class="success">✓ Verification complete. Ready to use!</span>
+            </div>
+        </div>
+        <div class="step">
+            <strong>5.</strong> Click any "View Certificate" button
+        </div>
+        <div class="step">
+            <strong>6.</strong> Check console for these messages:
+            <div class="info">
+                <span class="success">Opening certificate modal for ID: 1</span><br>
+                <span class="success">Certificate data found: HackerRank Software Engineer</span><br>
+                <span class="success">openModal called with: {...}</span><br>
+                <span class="success">Modal opened successfully</span>
+            </div>
+        </div>
+        
+        <a href="certifications.html" target="_blank">
+            <button class="test-button">
+                📄 Open certifications.html
+            </button>
+        </a>
+    </div>
+    
+    <div class="test-section">
+        <h2>Common Issues & Solutions</h2>
+        
+        <div class="info">
+            <strong>Issue 1: Button clicks but nothing happens</strong><br>
+            <strong>Solution:</strong> Hard refresh the browser<br>
+            • Windows: <span class="code">Ctrl + Shift + R</span><br>
+            • Mac: <span class="code">Cmd + Shift + R</span>
+        </div>
+        
+        <div class="info" style="margin-top: 10px;">
+            <strong>Issue 2: Console shows errors</strong><br>
+            <strong>Solution:</strong> Check specific error message:<br>
+            • <span class="error">"openCertModal is not defined"</span> → File not saved properly, refresh again<br>
+            • <span class="error">"Cannot read property 'title'"</span> → Certificate data missing<br>
+            • <span class="error">"getElementById(...) is null"</span> → Modal HTML missing
+        </div>
+        
+        <div class="info" style="margin-top: 10px;">
+            <strong>Issue 3: Still freezing/not working</strong><br>
+            <strong>Solution:</strong> Clear all browser cache:<br>
+            1. Press <span class="code">Ctrl + Shift + Delete</span><br>
+            2. Select "Cached images and files"<br>
+            3. Click "Clear data"<br>
+            4. Refresh certifications.html
+        </div>
+    </div>
+    
+    <div class="test-section">
+        <h2>Test Results</h2>
+        <div id="testResults">
+            <span style="color: #64748b;">Test results will appear here...</span>
+        </div>
+    </div>
+
+    <script>
+        // Test 1: Basic JavaScript
+        function testBasicJS() {
+            const result = document.getElementById('basicTest');
+            result.innerHTML = '<p class="success">✓ JavaScript is working!</p>';
+            logResult('✓ PASS: JavaScript is working');
+        }
+        
+        // Test 2: Check if functions exist
+        function checkFunctions() {
+            const result = document.getElementById('functionTest');
+            let html = '<div style="margin-top: 10px;">';
+            let allPassed = true;
+            
+            // Check if we're on the certifications page
+            const isCertPage = window.location.pathname.includes('certifications.html');
+            
+            if (!isCertPage) {
+                html += '<p class="info">ℹ This test should be run from <span class="code">certifications.html</span></p>';
+                html += '<p>Click the button below to open it:</p>';
+                html += '<a href="certifications.html" target="_blank"><button class="test-button">Open certifications.html</button></a>';
+            } else {
+                // Check for functions
+                const checks = [
+                    { name: 'openCertModal', exists: typeof openCertModal === 'function' },
+                    { name: 'openModal', exists: typeof openModal === 'function' },
+                    { name: 'closeModal', exists: typeof closeModal === 'function' },
+                    { name: 'downloadCertificate', exists: typeof downloadCertificate === 'function' },
+                    { name: 'certificatesData', exists: typeof certificatesData === 'object' }
+                ];
+                
+                checks.forEach(check => {
+                    if (check.exists) {
+                        html += `<p class="success">✓ ${check.name} found</p>`;
+                        logResult(`✓ PASS: ${check.name} exists`);
+                    } else {
+                        html += `<p class="error">✗ ${check.name} NOT found</p>`;
+                        logResult(`✗ FAIL: ${check.name} missing`);
+                        allPassed = false;
+                    }
+                });
+                
+                // Check modal element
+                const modal = document.getElementById('certModal');
+                if (modal) {
+                    html += '<p class="success">✓ Modal element found</p>';
+                    logResult('✓ PASS: Modal element exists');
+                } else {
+                    html += '<p class="error">✗ Modal element NOT found</p>';
+                    logResult('✗ FAIL: Modal element missing');
+                    allPassed = false;
+                }
+                
+                if (allPassed) {
+                    html += '<p style="margin-top: 15px; color: #10b981; font-weight: bold;">🎉 All checks passed! Try clicking a "View Certificate" button.</p>';
+                    logResult('🎉 ALL TESTS PASSED - Modal should work!');
+                } else {
+                    html += '<p style="margin-top: 15px; color: #ef4444; font-weight: bold;">⚠️ Some checks failed. Hard refresh the page (Ctrl+Shift+R)</p>';
+                    logResult('⚠️ TESTS FAILED - See errors above');
+                }
+            }
+            
+            html += '</div>';
+            result.innerHTML = html;
+        }
+        
+        // Log to results area
+        function logResult(message) {
+            const results = document.getElementById('testResults');
+            const timestamp = new Date().toLocaleTimeString();
+            results.innerHTML += `<div>[${timestamp}] ${message}</div>`;
+        }
+        
+        // Auto-run on load
+        window.addEventListener('load', function() {
+            logResult('Test page loaded');
+            logResult('Click buttons above to run tests');
+        });
+    </script>
+</body>
+</html>

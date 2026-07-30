@@ -1,0 +1,2513 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Skills — Deepak S | Software Engineer</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        /* ══════════════════════════════════════════════════════════════
+           SKILLS PAGE — Enterprise-Grade Professional Design
+           Sections: Hero · Filter · Frontend · UI/UX · API · DSA · Tools
+           ══════════════════════════════════════════════════════════════ */
+
+        /* ── Ambient Background Orbs ──────────────────────────────── */
+        .bg-orb {
+            position: fixed;
+            border-radius: 50%;
+            filter: blur(90px);
+            pointer-events: none;
+            z-index: 0;
+            animation: orbDrift ease-in-out infinite alternate;
+        }
+        .orb-1 { width: 550px; height: 550px; background: rgba(59,130,246,0.12); top: -200px; right: -120px; animation-duration: 14s; }
+        .orb-2 { width: 420px; height: 420px; background: rgba(124,58,237,0.10); bottom: -180px; left: -100px; animation-duration: 18s; }
+        .orb-3 { width: 320px; height: 320px; background: rgba(249,115,22,0.07); top: 45%; right: 5%;  animation-duration: 22s; }
+        @keyframes orbDrift {
+            from { transform: translate(0, 0) scale(1); }
+            to   { transform: translate(28px, 28px) scale(1.08); }
+        }
+
+        /* ── Skills Hero Section ──────────────────────────────────── */
+        .skills-hero {
+            padding: 80px 0 64px;
+            position: relative;
+            border-bottom: 1px solid rgba(255,255,255,0.08);
+            overflow: hidden;
+            background: rgba(255,255,255,0.02);
+            border-radius: 32px;
+            box-shadow: 0 32px 90px rgba(0,0,0,0.28);
+            backdrop-filter: blur(18px);
+        }
+        .skills-hero::before {
+            content: '';
+            position: absolute;
+            top: -100px; right: -80px;
+            width: 520px; height: 520px;
+            border-radius: 50%;
+            background: radial-gradient(circle, rgba(59,130,246,0.14) 0%, transparent 60%);
+            filter: blur(8px);
+            pointer-events: none;
+        }
+
+        .sh-overline {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            font-family: var(--font-mono);
+            font-size: 0.72rem;
+            color: var(--blue);
+            letter-spacing: 4px;
+            text-transform: uppercase;
+            margin-bottom: 20px;
+        }
+        .sh-overline::before {
+            content: '';
+            display: block;
+            width: 28px; height: 1px;
+            background: linear-gradient(to right, var(--blue), transparent);
+        }
+
+        .sh-title {
+            font-family: var(--font-display);
+            font-size: 4rem;
+            font-weight: 800;
+            line-height: 1.05;
+            letter-spacing: -2.5px;
+            margin-bottom: 20px;
+        }
+        .sh-title .gradient-text {
+            background: linear-gradient(120deg, #60a5fa 0%, #a78bfa 45%, #fb923c 100%);
+            background-size: 220% auto;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            animation: gradShift 6s ease infinite;
+        }
+        @keyframes gradShift {
+            0%   { background-position: 0% center; }
+            50%  { background-position: 100% center; }
+            100% { background-position: 0% center; }
+        }
+
+        .sh-sub {
+            font-size: 1.05rem;
+            color: var(--text-muted);
+            max-width: 600px;
+            line-height: 1.7;
+            margin-bottom: 48px;
+        }
+
+        /* ── Stat Boxes Strip ─────────────────────────────────────── */
+        .stats-strip {
+            display: flex;
+            gap: 14px;
+            flex-wrap: wrap;
+            margin-top: 20px;
+        }
+        .stat-box {
+            flex: 1;
+            min-width: 130px;
+            background: rgba(255,255,255,0.03);
+            border: 1px solid rgba(255,255,255,0.08);
+            border-radius: 22px;
+            padding: 22px 24px;
+            position: relative;
+            overflow: hidden;
+            transition: border-color 0.3s, transform 0.3s, box-shadow 0.3s;
+            cursor: default;
+            box-shadow: inset 0 0 0 1px rgba(255,255,255,0.02);
+            backdrop-filter: blur(16px);
+        }
+        .stat-box:hover {
+            border-color: rgba(59,130,246,0.28);
+            transform: translateY(-4px);
+            box-shadow: 0 18px 45px rgba(0,0,0,0.18);
+        }
+        .stat-box::after {
+            content: '';
+            position: absolute;
+            bottom: 0; left: 0; right: 0;
+            height: 2px;
+            background: var(--sb-grad, linear-gradient(90deg, var(--blue), var(--blue-light)));
+            transform: scaleX(0);
+            transform-origin: left;
+            transition: transform 0.45s ease;
+        }
+        .stat-box:hover::after { transform: scaleX(1); }
+        .sb-num {
+            font-family: var(--font-display);
+            font-size: 2.3rem;
+            font-weight: 800;
+            color: var(--text);
+            line-height: 1;
+            display: inline-block;
+        }
+        .sb-suffix {
+            font-family: var(--font-display);
+            font-size: 1.5rem;
+            font-weight: 800;
+            color: var(--text);
+            display: inline-block;
+        }
+        .sb-lbl {
+            display: block;
+            font-family: var(--font-mono);
+            font-size: 0.68rem;
+            color: var(--text-dim);
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            margin-top: 7px;
+        }
+
+        /* ── Sticky Filter Bar ────────────────────────────────────── */
+        .filter-bar {
+            padding: 18px 0;
+            position: sticky;
+            top: var(--nav-h);
+            z-index: 99;
+            background: rgba(10,15,28,0.95);
+            backdrop-filter: blur(26px);
+            -webkit-backdrop-filter: blur(26px);
+            border-bottom: 1px solid rgba(255,255,255,0.05);
+            box-shadow: 0 8px 35px rgba(0,0,0,0.20);
+        }
+        .filter-tabs {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+        .ftab {
+            font-family: var(--font-mono);
+            font-size: 0.78rem;
+            font-weight: 600;
+            padding: 10px 18px;
+            border-radius: 999px;
+            border: 1px solid rgba(255,255,255,0.08);
+            background: rgba(255,255,255,0.03);
+            color: var(--text-muted);
+            cursor: pointer;
+            transition: all 0.22s ease;
+            letter-spacing: 0.5px;
+        }
+        .ftab:hover {
+            border-color: rgba(59,130,246,0.4);
+            color: var(--text);
+            background: rgba(59,130,246,0.12);
+        }
+        .ftab.active {
+            background: linear-gradient(135deg, rgba(59,130,246,0.32), rgba(124,58,237,0.24));
+            border-color: rgba(59,130,246,0.5);
+            color: #fff;
+            box-shadow: 0 12px 30px rgba(59,130,246,0.16);
+        }
+
+        /* ── Skills Body ──────────────────────────────────────────── */
+        .skills-body {
+            padding: 64px 0 80px;
+        }
+
+        /* ── Category Blocks ──────────────────────────────────────── */
+        .cat-block {
+            margin-bottom: 76px;
+            opacity: 0;
+            transform: translateY(32px);
+            transition: opacity 0.65s cubic-bezier(0.16, 1, 0.3, 1),
+                        transform 0.65s cubic-bezier(0.16, 1, 0.3, 1);
+            background: rgba(255,255,255,0.02);
+            border: 1px solid rgba(255,255,255,0.06);
+            border-radius: 30px;
+            padding: 28px 28px 24px;
+            backdrop-filter: blur(18px);
+        }
+        .cat-block.reveal {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        .cat-block:last-of-type { margin-bottom: 0; }
+
+        .cat-header {
+            display: flex;
+            align-items: center;
+            gap: 18px;
+            margin-bottom: 28px;
+            padding-bottom: 20px;
+            border-bottom: 1px solid rgba(255,255,255,0.08);
+            flex-wrap: wrap;
+        }
+        .cat-icon {
+            width: 54px; height: 54px;
+            border-radius: 18px;
+            display: flex; align-items: center; justify-content: center;
+            flex-shrink: 0;
+            position: relative;
+            box-shadow: inset 0 0 0 1px rgba(255,255,255,0.08);
+            background: rgba(255,255,255,0.04);
+        }
+        .ci-blue   { background: rgba(59,130,246,0.1);  border: 1px solid rgba(59,130,246,0.22); }
+        .ci-orange { background: rgba(249,115,22,0.1);   border: 1px solid rgba(249,115,22,0.22); }
+        .ci-green  { background: rgba(16,185,129,0.1);   border: 1px solid rgba(16,185,129,0.22); }
+        .ci-purple { background: rgba(124,58,237,0.1);   border: 1px solid rgba(124,58,237,0.22); }
+        .ci-teal   { background: rgba(8,145,178,0.1);    border: 1px solid rgba(8,145,178,0.22); }
+
+        .cat-info { flex: 1; min-width: 180px; }
+        .cat-num {
+            font-family: var(--font-mono);
+            font-size: 0.68rem;
+            color: var(--text-dim);
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            margin-bottom: 4px;
+        }
+        .cat-name {
+            font-family: var(--font-display);
+            font-size: 1.4rem;
+            font-weight: 700;
+            color: var(--text);
+            margin-bottom: 5px;
+        }
+        .cat-desc {
+            font-family: var(--font-mono);
+            font-size: 0.78rem;
+            color: var(--text-muted);
+            letter-spacing: 0.3px;
+        }
+        .cat-badge {
+            font-family: var(--font-mono);
+            font-size: 0.7rem;
+            color: var(--text-dim);
+            border: 1px solid var(--border);
+            border-radius: 20px;
+            padding: 4px 12px;
+            white-space: nowrap;
+            flex-shrink: 0;
+        }
+
+        /* ── Skill Cards Grid ─────────────────────────────────────── */
+        .skill-cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(215px, 1fr));
+            gap: 14px;
+        }
+
+        .sk-card {
+            background: rgba(10,16,29,0.95);
+            border: 1px solid rgba(255,255,255,0.08);
+            border-radius: 22px;
+            padding: 24px;
+            position: relative;
+            overflow: hidden;
+            cursor: default;
+            opacity: 0;
+            transform: translateY(18px);
+            transition: opacity 0.5s ease, transform 0.5s ease,
+                        border-color 0.3s, box-shadow 0.35s, background 0.35s;
+            box-shadow: 0 18px 40px rgba(0,0,0,0.18);
+            backdrop-filter: blur(14px);
+        }
+        .sk-card.card-show {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        .sk-card:hover {
+            transform: translateY(-8px) scale(1.02);
+        }
+
+        .sk-card.theme-blue:hover  { border-color: rgba(59,130,246,0.60);  box-shadow: 0 26px 70px rgba(28,64,124,0.20), 0 0 40px rgba(59,130,246,0.08); }
+        .sk-card.theme-orange:hover { border-color: rgba(249,115,22,0.60);  box-shadow: 0 26px 70px rgba(95,53,17,0.20), 0 0 40px rgba(249,115,22,0.08); }
+        .sk-card.theme-green:hover  { border-color: rgba(16,185,129,0.60);  box-shadow: 0 26px 70px rgba(19,85,64,0.20), 0 0 40px rgba(16,185,129,0.08); }
+        .sk-card.theme-purple:hover { border-color: rgba(124,58,237,0.60);  box-shadow: 0 26px 70px rgba(60,28,102,0.20), 0 0 40px rgba(124,58,237,0.08); }
+
+        /* Top shimmer accent line */
+        .sk-card::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; right: 0;
+            height: 2px;
+            background: var(--sk-grad);
+            transform: scaleX(0);
+            transform-origin: left;
+            transition: transform 0.45s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        .sk-card:hover::before { transform: scaleX(1); }
+
+        /* Subtle background glow */
+        .sk-card::after {
+            content: '';
+            position: absolute;
+            top: -60%; left: -60%;
+            width: 220%; height: 220%;
+            background: radial-gradient(circle, var(--sk-glow, rgba(255,255,255,0.12)) 0%, transparent 52%);
+            opacity: 0;
+            transition: opacity 0.5s ease;
+            filter: blur(12px);
+            pointer-events: none;
+        }
+        .sk-card:hover::after { opacity: 1; }
+
+        .skc-icon-wrap {
+            width: 42px; height: 42px;
+            border-radius: 10px;
+            background: var(--sk-bg, rgba(59,130,246,0.08));
+            display: flex; align-items: center; justify-content: center;
+            margin-bottom: 14px;
+            font-size: 1.35rem;
+        }
+        .skc-name {
+            font-weight: 700;
+            font-size: 0.92rem;
+            color: var(--text);
+            margin-bottom: 3px;
+        }
+        .skc-sub {
+            font-family: var(--font-mono);
+            font-size: 0.67rem;
+            color: var(--text-dim);
+            letter-spacing: 0.3px;
+            margin-bottom: 16px;
+            line-height: 1.5;
+        }
+        .skc-meta {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 7px;
+        }
+        .skc-level {
+            font-family: var(--font-mono);
+            font-size: 0.67rem;
+            color: var(--sk-color, #60a5fa);
+            font-weight: 600;
+            letter-spacing: 0.8px;
+            text-transform: uppercase;
+        }
+        .skc-pct {
+            font-family: var(--font-display);
+            font-size: 1.05rem;
+            font-weight: 800;
+            color: var(--text);
+        }
+        .skc-track {
+            height: 4px;
+            background: var(--surface-2);
+            border-radius: 2px;
+            overflow: hidden;
+        }
+        .skc-fill {
+            height: 100%;
+            border-radius: 2px;
+            width: 0;
+            background: var(--sk-grad);
+            transition: width 1.3s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        /* ── Tools Pills (Category 5) ─────────────────────────────── */
+        .tool-grid {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+            padding: 12px;
+            background: rgba(255,255,255,0.02);
+            border: 1px solid rgba(255,255,255,0.06);
+            border-radius: 24px;
+            box-shadow: inset 0 0 0 1px rgba(255,255,255,0.01);
+        }
+        .tool-pill {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 11px 22px;
+            background: rgba(255,255,255,0.03);
+            border: 1px solid rgba(255,255,255,0.08);
+            border-radius: 999px;
+            font-size: 0.87rem;
+            font-weight: 500;
+            color: var(--text-muted);
+            transition: border-color 0.25s, background 0.25s, color 0.25s, transform 0.25s;
+            cursor: default;
+            opacity: 0;
+            transform: scale(0.92);
+        }
+        .tool-pill.pill-show {
+            opacity: 1;
+            transform: scale(1);
+            transition: opacity 0.45s ease, transform 0.45s cubic-bezier(0.16, 1, 0.3, 1),
+                        border-color 0.25s, background 0.25s, color 0.25s;
+        }
+        .tool-pill:hover {
+            border-color: rgba(59,130,246,0.35);
+            color: var(--text);
+            background: rgba(59,130,246,0.12);
+            transform: translateY(-1px) scale(1.01) !important;
+        }
+        .tp-icon { font-size: 1.05rem; }
+        .tp-dot {
+            width: 6px; height: 6px;
+            border-radius: 50%;
+            flex-shrink: 0;
+            box-shadow: 0 0 7px currentColor;
+        }
+
+        /* ── React Hooks Highlight Block ──────────────────────────── */
+        .hooks-spotlight {
+            margin-top: 20px;
+            padding: 20px 24px;
+            background: rgba(59,130,246,0.05);
+            border: 1px solid rgba(59,130,246,0.15);
+            border-radius: 12px;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            align-items: center;
+        }
+        .hs-label {
+            font-family: var(--font-mono);
+            font-size: 0.72rem;
+            color: var(--blue);
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            margin-right: 4px;
+            flex-shrink: 0;
+        }
+        .hook-badge {
+            font-family: var(--font-mono);
+            font-size: 0.8rem;
+            font-weight: 600;
+            padding: 5px 12px;
+            border-radius: 6px;
+            background: rgba(59,130,246,0.1);
+            border: 1px solid rgba(59,130,246,0.2);
+            color: var(--blue-light);
+            transition: background 0.2s, transform 0.2s;
+            cursor: default;
+        }
+        .hook-badge:hover {
+            background: rgba(59,130,246,0.18);
+            transform: translateY(-2px);
+        }
+
+        /* ── Summary Proficiency Banner ───────────────────────────── */
+        .summary-banner {
+            margin-top: 80px;
+            padding: 44px 44px 40px;
+            background: rgba(255,255,255,0.03);
+            border: 1px solid rgba(255,255,255,0.08);
+            border-radius: 28px;
+            position: relative;
+            overflow: hidden;
+            opacity: 0;
+            transform: translateY(24px);
+            transition: opacity 0.65s ease, transform 0.65s ease, box-shadow 0.3s;
+            box-shadow: 0 30px 80px rgba(0,0,0,0.18);
+            backdrop-filter: blur(18px);
+        }
+        .summary-banner.reveal {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        .summary-banner::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; right: 0;
+            height: 2px;
+            background: linear-gradient(to right, #3b82f6, #7c3aed, #f97316, #10b981);
+        }
+        .summary-banner::after {
+            content: '';
+            position: absolute;
+            top: -120px; right: -80px;
+            width: 350px; height: 350px;
+            border-radius: 50%;
+            background: radial-gradient(circle, rgba(59,130,246,0.05) 0%, transparent 65%);
+            pointer-events: none;
+        }
+        .sb-top {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            gap: 20px;
+            margin-bottom: 36px;
+            flex-wrap: wrap;
+        }
+        .sb-title {
+            font-family: var(--font-display);
+            font-size: 1.35rem;
+            font-weight: 700;
+            margin-bottom: 5px;
+        }
+        .sb-sub {
+            font-family: var(--font-mono);
+            font-size: 0.75rem;
+            color: var(--text-muted);
+        }
+        .sb-chip {
+            background: rgba(59,130,246,0.12);
+            border: 1px solid rgba(59,130,246,0.24);
+            border-radius: 22px;
+            padding: 10px 20px;
+            font-family: var(--font-display);
+            font-size: 0.92rem;
+            font-weight: 700;
+            color: var(--blue-light);
+            white-space: nowrap;
+            flex-shrink: 0;
+            box-shadow: inset 0 0 0 1px rgba(255,255,255,0.05);
+        }
+        .domain-bars {
+            display: flex;
+            flex-direction: column;
+            gap: 18px;
+        }
+        .db-row {
+            display: grid;
+            grid-template-columns: 160px 1fr 44px;
+            align-items: center;
+            gap: 14px;
+        }
+        .db-label {
+            font-size: 0.84rem;
+            color: var(--text-muted);
+            font-weight: 500;
+        }
+        .db-track {
+            height: 8px;
+            background: rgba(255,255,255,0.08);
+            border-radius: 999px;
+            overflow: hidden;
+        }
+        .db-fill {
+            height: 100%;
+            border-radius: 999px;
+            width: 0;
+            transition: width 1.5s cubic-bezier(0.16, 1, 0.3, 1);
+            background: linear-gradient(90deg, #3b82f6, #7c3aed, #f97316, #10b981);
+            box-shadow: 0 8px 16px rgba(0,0,0,0.18);
+        }
+        .db-pct {
+            font-family: var(--font-display);
+            font-size: 0.88rem;
+            font-weight: 700;
+            color: var(--text);
+            text-align: right;
+        }
+
+        /* ── Responsive ───────────────────────────────────────────── */
+        @media (max-width: 900px) {
+            .sh-title { font-size: 3rem; letter-spacing: -1.5px; }
+        }
+        @media (max-width: 768px) {
+            .sh-title { font-size: 2.4rem; letter-spacing: -1px; }
+            .skills-hero { padding: 60px 0 48px; }
+            .skill-cards { grid-template-columns: repeat(auto-fill, minmax(165px, 1fr)); }
+            .summary-banner { padding: 28px 20px; }
+            .db-row { grid-template-columns: 120px 1fr 38px; }
+            .db-label { font-size: 0.78rem; }
+        }
+        @media (max-width: 540px) {
+            .sh-title { font-size: 2rem; letter-spacing: -0.5px; }
+            .stat-box { min-width: 90px; }
+            .skill-cards { grid-template-columns: 1fr 1fr; }
+            .db-row { grid-template-columns: 100px 1fr 34px; }
+            .hooks-spotlight { padding: 16px; }
+        }
+        @media (max-width: 380px) {
+            .skill-cards { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- ═══ AMBIENT ORBS ════════════════════════════════════════════ -->
+    <div class="bg-orb orb-1"></div>
+    <div class="bg-orb orb-2"></div>
+    <div class="bg-orb orb-3"></div>
+
+    <!-- ═══ HEADER / NAV ════════════════════════════════════════════ -->
+    <header class="site-header">
+        <div class="nav-inner">
+            <a href="index.html" class="logo">DEEPAK<span class="dot">.</span>S</a>
+            <nav class="nav-links" aria-label="Main navigation">
+                <a href="index.html"    class="nav-link" data-page="index">Home</a>
+                <a href="about.html"    class="nav-link" data-page="about">About</a>
+                <a href="projects.html" class="nav-link" data-page="projects">Projects</a>
+                <a href="skills.html"   class="nav-link" data-page="skills">Skills</a>
+                <a href="certifications.html" class="nav-link" data-page="certifications">Certifications</a>
+                <a href="contact.html"  class="nav-link nav-cta" data-page="contact">Hire Me</a>
+            </nav>
+            <button class="hamburger" id="hamburger" aria-label="Toggle menu">
+                <span></span><span></span><span></span>
+            </button>
+        </div>
+        <nav class="mobile-menu" id="mobileMenu" aria-label="Mobile navigation">
+            <a href="index.html"    class="mobile-nav-link" data-page="index">Home</a>
+            <a href="about.html"    class="mobile-nav-link" data-page="about">About</a>
+            <a href="projects.html" class="mobile-nav-link" data-page="projects">Projects</a>
+            <a href="skills.html"   class="mobile-nav-link" data-page="skills">Skills</a>
+            <a href="certifications.html" class="mobile-nav-link" data-page="certifications">Certifications</a>
+            <a href="contact.html"  class="mobile-nav-link" data-page="contact">Contact / Hire Me</a>
+        </nav>
+    </header>
+
+    <!-- ═══ PAGE WRAPPER ════════════════════════════════════════════ -->
+    <div class="page-wrapper">
+
+        <!-- ╔══════════════════════════════════════════════════════╗
+             ║  HERO                                                ║
+             ╚══════════════════════════════════════════════════════╝ -->
+        <section class="skills-hero">
+            <div class="container">
+                <div class="sh-overline anim-1">Technical Profile</div>
+
+                <h1 class="sh-title anim-2">
+                    Skills &amp;<br><span class="gradient-text">Expertise</span>
+                </h1>
+
+                <p class="sh-sub anim-3">
+                    Building software solutions using Software Engineering principles, Full Stack Development, cloud deployments, AI integration, modern databases, and web applications.
+                </p>
+
+                <!-- Animated stat counters -->
+                <div class="stats-strip anim-4">
+                    <div class="stat-box" style="--sb-grad: linear-gradient(90deg, #3b82f6, #60a5fa);">
+                        <span class="sb-num" data-count="11">0</span>
+                        <span class="sb-lbl">Skill Domains</span>
+                    </div>
+                    <div class="stat-box" style="--sb-grad: linear-gradient(90deg, #7c3aed, #a78bfa);">
+                        <span class="sb-num" data-count="92">0</span><span class="sb-suffix">+</span>
+                        <span class="sb-lbl">Technical Skills</span>
+                    </div>
+                    <div class="stat-box" style="--sb-grad: linear-gradient(90deg, #f97316, #fb923c);">
+                        <span class="sb-num" data-count="13">0</span>
+                        <span class="sb-lbl">Developer Tools</span>
+                    </div>
+                    <div class="stat-box" style="--sb-grad: linear-gradient(90deg, #10b981, #34d399);">
+                        <span class="sb-num" data-count="12">0</span><span class="sb-suffix">+</span>
+                        <span class="sb-lbl">Projects Built</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ╔══════════════════════════════════════════════════════╗
+             ║  STICKY FILTER BAR                                   ║
+             ╚══════════════════════════════════════════════════════╝ -->
+        <div class="filter-bar">
+            <div class="container">
+                <div class="filter-tabs">
+                    <button class="ftab active" data-filter="all">All</button>
+                    <button class="ftab" data-filter="programming">Programming</button>
+                    <button class="ftab" data-filter="frontend">Frontend</button>
+                    <button class="ftab" data-filter="backend">Backend</button>
+                    <button class="ftab" data-filter="database">Database</button>
+                    <button class="ftab" data-filter="software-eng">Software Engineering</button>
+                    <button class="ftab" data-filter="ai">Artificial Intelligence</button>
+                    <button class="ftab" data-filter="cloud">Cloud</button>
+                    <button class="ftab" data-filter="tools">Developer Tools</button>
+                    <button class="ftab" data-filter="professional">Professional Skills</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- ╔══════════════════════════════════════════════════════╗
+             ║  SKILLS BODY                                         ║
+             ╚══════════════════════════════════════════════════════╝ -->
+        <section class="skills-body">
+            <div class="container">
+
+                <!-- ──────────────────────────────────────────────
+                     01 / 05 · FRONTEND DEVELOPMENT
+                     ────────────────────────────────────────────── -->
+                <div class="cat-block" data-category="frontend">
+                    <div class="cat-header">
+                        <div class="cat-icon ci-blue">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#60a5fa" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg>
+                        </div>
+                        <div class="cat-info">
+                            <div class="cat-num">01 / 11</div>
+                            <div class="cat-name">Frontend Development</div>
+                            <div class="cat-desc">// HTML5 · CSS3 · JavaScript ES6+ · React.js · Hooks · Component Design</div>
+                        </div>
+                        <div class="cat-badge">6 skills</div>
+                    </div>
+
+                    <div class="skill-cards">
+                        <!-- HTML5 -->
+                        <div class="sk-card theme-blue" data-pct="95"
+                             style="--sk-grad: linear-gradient(90deg,#3b82f6,#60a5fa); --sk-color:#60a5fa; --sk-bg:rgba(59,130,246,0.08); --sk-glow:rgba(59,130,246,0.05);">
+                            <div class="skc-icon-wrap">🌐</div>
+                            <div class="skc-name">HTML5</div>
+                            <div class="skc-sub">Semantic markup · Accessibility · SEO meta · Web standards</div>
+                            <div class="skc-meta">
+                                <span class="skc-level">Expert</span>
+                                <span class="skc-pct">95%</span>
+                            </div>
+                            <div class="skc-track"><div class="skc-fill"></div></div>
+                        </div>
+
+                        <!-- CSS3 -->
+                        <div class="sk-card theme-blue" data-pct="92"
+                             style="--sk-grad: linear-gradient(90deg,#3b82f6,#60a5fa); --sk-color:#60a5fa; --sk-bg:rgba(59,130,246,0.08); --sk-glow:rgba(59,130,246,0.05);">
+                            <div class="skc-icon-wrap">🎨</div>
+                            <div class="skc-name">CSS3 / Responsive</div>
+                            <div class="skc-sub">Animations · Variables · Media queries · Dark mode</div>
+                            <div class="skc-meta">
+                                <span class="skc-level">Expert</span>
+                                <span class="skc-pct">92%</span>
+                            </div>
+                            <div class="skc-track"><div class="skc-fill"></div></div>
+                        </div>
+
+                        <!-- JavaScript ES6+ -->
+                        <div class="sk-card theme-blue" data-pct="90"
+                             style="--sk-grad: linear-gradient(90deg,#3b82f6,#60a5fa); --sk-color:#60a5fa; --sk-bg:rgba(59,130,246,0.08); --sk-glow:rgba(59,130,246,0.05);">
+                            <div class="skc-icon-wrap">⚡</div>
+                            <div class="skc-name">JavaScript ES6+</div>
+                            <div class="skc-sub">Closures · Async/Await · Promises · Destructuring</div>
+                            <div class="skc-meta">
+                                <span class="skc-level">Advanced</span>
+                                <span class="skc-pct">90%</span>
+                            </div>
+                            <div class="skc-track"><div class="skc-fill"></div></div>
+                        </div>
+
+                        <!-- React.js -->
+                        <div class="sk-card theme-blue" data-pct="88"
+                             style="--sk-grad: linear-gradient(90deg,#3b82f6,#60a5fa); --sk-color:#60a5fa; --sk-bg:rgba(59,130,246,0.08); --sk-glow:rgba(59,130,246,0.05);">
+                            <div class="skc-icon-wrap">⚛️</div>
+                            <div class="skc-name">React.js</div>
+                            <div class="skc-sub">JSX · Virtual DOM · Lifecycle · Context API</div>
+                            <div class="skc-meta">
+                                <span class="skc-level">Advanced</span>
+                                <span class="skc-pct">88%</span>
+                            </div>
+                            <div class="skc-track"><div class="skc-fill"></div></div>
+                        </div>
+
+                        <!-- React Hooks -->
+                        <div class="sk-card theme-blue" data-pct="85"
+                             style="--sk-grad: linear-gradient(90deg,#3b82f6,#60a5fa); --sk-color:#60a5fa; --sk-bg:rgba(59,130,246,0.08); --sk-glow:rgba(59,130,246,0.05);">
+                            <div class="skc-icon-wrap">🎣</div>
+                            <div class="skc-name">React Hooks</div>
+                            <div class="skc-sub">useState · useEffect · useMemo · useCallback · custom</div>
+                            <div class="skc-meta">
+                                <span class="skc-level">Advanced</span>
+                                <span class="skc-pct">85%</span>
+                            </div>
+                            <div class="skc-track"><div class="skc-fill"></div></div>
+                        </div>
+
+                        <!-- Component Architecture -->
+                        <div class="sk-card theme-blue" data-pct="82"
+                             style="--sk-grad: linear-gradient(90deg,#3b82f6,#60a5fa); --sk-color:#60a5fa; --sk-bg:rgba(59,130,246,0.08); --sk-glow:rgba(59,130,246,0.05);">
+                            <div class="skc-icon-wrap">🏗️</div>
+                            <div class="skc-name">Component Design</div>
+                            <div class="skc-sub">Props · State · Reusability · Composition patterns</div>
+                            <div class="skc-meta">
+                                <span class="skc-level">Advanced</span>
+                                <span class="skc-pct">82%</span>
+                            </div>
+                            <div class="skc-track"><div class="skc-fill"></div></div>
+                        </div>
+
+                        <!-- Props -->
+                        <div class="sk-card theme-blue" data-pct="86"
+                             style="--sk-grad: linear-gradient(90deg,#3b82f6,#60a5fa); --sk-color:#60a5fa; --sk-bg:rgba(59,130,246,0.08); --sk-glow:rgba(59,130,246,0.05);">
+                            <div class="skc-icon-wrap">📦</div>
+                            <div class="skc-name">Props</div>
+                            <div class="skc-sub">Component data flow · Immutability · Reusability</div>
+                            <div class="skc-meta">
+                                <span class="skc-level">Advanced</span>
+                                <span class="skc-pct">86%</span>
+                            </div>
+                            <div class="skc-track"><div class="skc-fill"></div></div>
+                        </div>
+
+                        <!-- Context API -->
+                        <div class="sk-card theme-blue" data-pct="84"
+                             style="--sk-grad: linear-gradient(90deg,#3b82f6,#60a5fa); --sk-color:#60a5fa; --sk-bg:rgba(59,130,246,0.08); --sk-glow:rgba(59,130,246,0.05);">
+                            <div class="skc-icon-wrap">🌐</div>
+                            <div class="skc-name">Context API</div>
+                            <div class="skc-sub">Global state · Provider · Consumer · Hooks</div>
+                            <div class="skc-meta">
+                                <span class="skc-level">Advanced</span>
+                                <span class="skc-pct">84%</span>
+                            </div>
+                            <div class="skc-track"><div class="skc-fill"></div></div>
+                        </div>
+
+                        <!-- State Management -->
+                        <div class="sk-card theme-blue" data-pct="88"
+                             style="--sk-grad: linear-gradient(90deg,#3b82f6,#60a5fa); --sk-color:#60a5fa; --sk-bg:rgba(59,130,246,0.08); --sk-glow:rgba(59,130,246,0.05);">
+                            <div class="skc-icon-wrap">🧠</div>
+                            <div class="skc-name">State Management</div>
+                            <div class="skc-sub">Local state · Context · Reducers · Sync updates</div>
+                            <div class="skc-meta">
+                                <span class="skc-level">Advanced</span>
+                                <span class="skc-pct">88%</span>
+                            </div>
+                            <div class="skc-track"><div class="skc-fill"></div></div>
+                        </div>
+
+                        <!-- Tailwind CSS -->
+                        <div class="sk-card theme-blue" data-pct="90"
+                             style="--sk-grad: linear-gradient(90deg,#3b82f6,#60a5fa); --sk-color:#60a5fa; --sk-bg:rgba(59,130,246,0.08); --sk-glow:rgba(59,130,246,0.05);">
+                            <div class="skc-icon-wrap">💨</div>
+                            <div class="skc-name">Tailwind CSS</div>
+                            <div class="skc-sub">Utility classes · Responsive design · Custom theming</div>
+                            <div class="skc-meta">
+                                <span class="skc-level">Advanced</span>
+                                <span class="skc-pct">90%</span>
+                            </div>
+                            <div class="skc-track"><div class="skc-fill"></div></div>
+                        </div>
+
+                        <!-- CSS Grid -->
+                        <div class="sk-card theme-blue" data-pct="91"
+                             style="--sk-grad: linear-gradient(90deg,#3b82f6,#60a5fa); --sk-color:#60a5fa; --sk-bg:rgba(59,130,246,0.08); --sk-glow:rgba(59,130,246,0.05);">
+                            <div class="skc-icon-wrap">▦</div>
+                            <div class="skc-name">CSS Grid</div>
+                            <div class="skc-sub">Layouts · Templates · Areas · Responsive structure</div>
+                            <div class="skc-meta">
+                                <span class="skc-level">Expert</span>
+                                <span class="skc-pct">91%</span>
+                            </div>
+                            <div class="skc-track"><div class="skc-fill"></div></div>
+                        </div>
+
+                        <!-- Flexbox -->
+                        <div class="sk-card theme-blue" data-pct="93"
+                             style="--sk-grad: linear-gradient(90deg,#3b82f6,#60a5fa); --sk-color:#60a5fa; --sk-bg:rgba(59,130,246,0.08); --sk-glow:rgba(59,130,246,0.05);">
+                            <div class="skc-icon-wrap">↔️</div>
+                            <div class="skc-name">Flexbox</div>
+                            <div class="skc-sub">Alignment · Distribution · Responsive rows · Centering</div>
+                            <div class="skc-meta">
+                                <span class="skc-level">Expert</span>
+                                <span class="skc-pct">93%</span>
+                            </div>
+                            <div class="skc-track"><div class="skc-fill"></div></div>
+                        </div>
+
+                        <!-- Vite -->
+                        <div class="sk-card theme-blue" data-pct="82"
+                             style="--sk-grad: linear-gradient(90deg,#3b82f6,#60a5fa); --sk-color:#60a5fa; --sk-bg:rgba(59,130,246,0.08); --sk-glow:rgba(59,130,246,0.05);">
+                            <div class="skc-icon-wrap">🚀</div>
+                            <div class="skc-name">Vite</div>
+                            <div class="skc-sub">Fast build tooling · HMR · Modern frontend workflows</div>
+                            <div class="skc-meta">
+                                <span class="skc-level">Advanced</span>
+                                <span class="skc-pct">82%</span>
+                            </div>
+                            <div class="skc-track"><div class="skc-fill"></div></div>
+                        </div>
+
+                        <!-- Mobile First Design -->
+                        <div class="sk-card theme-blue" data-pct="89"
+                             style="--sk-grad: linear-gradient(90deg,#3b82f6,#60a5fa); --sk-color:#60a5fa; --sk-bg:rgba(59,130,246,0.08); --sk-glow:rgba(59,130,246,0.05);">
+                            <div class="skc-icon-wrap">📱</div>
+                            <div class="skc-name">Mobile First Design</div>
+                            <div class="skc-sub">Progressive enhancements · Touch-friendly · Adaptive layouts</div>
+                            <div class="skc-meta">
+                                <span class="skc-level">Advanced</span>
+                                <span class="skc-pct">89%</span>
+                            </div>
+                            <div class="skc-track"><div class="skc-fill"></div></div>
+                        </div>
+
+                        <!-- Web Design -->
+                        <div class="sk-card theme-blue" data-pct="87"
+                             style="--sk-grad: linear-gradient(90deg,#3b82f6,#60a5fa); --sk-color:#60a5fa; --sk-bg:rgba(59,130,246,0.08); --sk-glow:rgba(59,130,246,0.05);">
+                            <div class="skc-icon-wrap">🖥️</div>
+                            <div class="skc-name">Web Design</div>
+                            <div class="skc-sub">Visual hierarchy · Typography · UX patterns · Layout harmony</div>
+                            <div class="skc-meta">
+                                <span class="skc-level">Advanced</span>
+                                <span class="skc-pct">87%</span>
+                            </div>
+                            <div class="skc-track"><div class="skc-fill"></div></div>
+                        </div>
+                    </div>
+
+                    <!-- React Hooks spotlight strip -->
+                    <div class="hooks-spotlight">
+                        <span class="hs-label">React Hooks</span>
+                        <span class="hook-badge">useState</span>
+                        <span class="hook-badge">useEffect</span>
+                        <span class="hook-badge">useMemo</span>
+                        <span class="hook-badge">useCallback</span>
+                        <span class="hook-badge">useRef</span>
+                        <span class="hook-badge">useContext</span>
+                        <span class="hook-badge">Custom Hooks</span>
+                    </div>
+                </div>
+
+                <!-- ──────────────────────────────────────────────
+                     02 / 06 · PROGRAMMING LANGUAGES & CONCEPTS
+                     ────────────────────────────────────────────── -->
+                <div class="cat-block" data-category="programming">
+                    <div class="cat-header">
+                        <div class="cat-icon ci-purple">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#a78bfa" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="16 18 22 12 16 6"></polyline><polyline points="8 6 2 12 8 18"></polyline></svg>
+                        </div>
+                        <div class="cat-info">
+                            <div class="cat-num">02 / 11</div>
+                            <div class="cat-name">Programming Languages & Concepts</div>
+                            <div class="cat-desc">// Core languages · OOP · Algorithms · Data structures · Debugging</div>
+                        </div>
+                        <div class="cat-badge">12 skills</div>
+                    </div>
+
+                    <div class="skill-cards">
+                        <!-- JavaScript -->
+                        <div class="sk-card theme-purple" data-pct="90"
+                             style="--sk-grad: linear-gradient(90deg,#7c3aed,#a78bfa); --sk-color:#a78bfa; --sk-bg:rgba(124,58,237,0.08); --sk-glow:rgba(124,58,237,0.05);">
+                            <div class="skc-icon-wrap" style="background:rgba(124,58,237,0.1);">⚡</div>
+                            <div class="skc-name">JavaScript</div>
+                            <div class="skc-sub">ES6+ · Async/Await · Promises · Event Loop</div>
+                            <div class="skc-meta">
+                                <span class="skc-level" style="color:#a78bfa;">Advanced</span>
+                                <span class="skc-pct">90%</span>
+                            </div>
+                            <div class="skc-track"><div class="skc-fill"></div></div>
+                        </div>
+
+                        <!-- TypeScript -->
+                        <div class="sk-card theme-purple" data-pct="85"
+                             style="--sk-grad: linear-gradient(90deg,#7c3aed,#a78bfa); --sk-color:#a78bfa; --sk-bg:rgba(124,58,237,0.08); --sk-glow:rgba(124,58,237,0.05);">
+                            <div class="skc-icon-wrap" style="background:rgba(124,58,237,0.1);">📘</div>
+                            <div class="skc-name">TypeScript</div>
+                            <div class="skc-sub">Type safety · Interfaces · Generics · Type inference</div>
+                            <div class="skc-meta">
+                                <span class="skc-level" style="color:#a78bfa;">Advanced</span>
+                                <span class="skc-pct">85%</span>
+                            </div>
+                            <div class="skc-track"><div class="skc-fill"></div></div>
+                        </div>
+
+                        <!-- Java -->
+                        <div class="sk-card theme-purple" data-pct="82"
+                             style="--sk-grad: linear-gradient(90deg,#7c3aed,#a78bfa); --sk-color:#a78bfa; --sk-bg:rgba(124,58,237,0.08); --sk-glow:rgba(124,58,237,0.05);">
+                            <div class="skc-icon-wrap" style="background:rgba(124,58,237,0.1);">☕</div>
+                            <div class="skc-name">Java</div>
+                            <div class="skc-sub">OOP · Inheritance · Encapsulation · Polymorphism · Abstraction · Method Overriding</div>
+                            <div class="skc-meta">
+                                <span class="skc-level" style="color:#a78bfa;">Proficient</span>
+                                <span class="skc-pct">82%</span>
+                            </div>
+                            <div class="skc-track"><div class="skc-fill"></div></div>
+                        </div>
+
+                        <!-- Python (Basics) -->
+                        <div class="sk-card theme-purple" data-pct="76"
+                             style="--sk-grad: linear-gradient(90deg,#7c3aed,#a78bfa); --sk-color:#a78bfa; --sk-bg:rgba(124,58,237,0.08); --sk-glow:rgba(124,58,237,0.05);">
+                            <div class="skc-icon-wrap" style="background:rgba(124,58,237,0.1);">🐍</div>
+                            <div class="skc-name">Python (Basics)</div>
+                            <div class="skc-sub">Python fundamentals · Data processing · NLP basics</div>
+                            <div class="skc-meta">
+                                <span class="skc-level" style="color:#a78bfa;">Intermediate</span>
+                                <span class="skc-pct">76%</span>
+                            </div>
+                            <div class="skc-track"><div class="skc-fill"></div></div>
+                        </div>
+
+                        <!-- HTML5 -->
+                        <div class="sk-card theme-purple" data-pct="96"
+                             style="--sk-grad: linear-gradient(90deg,#7c3aed,#a78bfa); --sk-color:#a78bfa; --sk-bg:rgba(124,58,237,0.08); --sk-glow:rgba(124,58,237,0.05);">
+                            <div class="skc-icon-wrap" style="background:rgba(124,58,237,0.1);">🌐</div>
+                            <div class="skc-name">HTML5</div>
+                            <div class="skc-sub">Semantic markup · Accessibility · Web standards</div>
+                            <div class="skc-meta">
+                                <span class="skc-level" style="color:#a78bfa;">Expert</span>
+                                <span class="skc-pct">96%</span>
+                            </div>
+                            <div class="skc-track"><div class="skc-fill"></div></div>
+                        </div>
+
+                        <!-- CSS3 -->
+                        <div class="sk-card theme-purple" data-pct="94"
+                             style="--sk-grad: linear-gradient(90deg,#7c3aed,#a78bfa); --sk-color:#a78bfa; --sk-bg:rgba(124,58,237,0.08); --sk-glow:rgba(124,58,237,0.05);">
+                            <div class="skc-icon-wrap" style="background:rgba(124,58,237,0.1);">🎨</div>
+                            <div class="skc-name">CSS3</div>
+                            <div class="skc-sub">Flexbox · Grid · Animations · Responsive design</div>
+                            <div class="skc-meta">
+                                <span class="skc-level" style="color:#a78bfa;">Expert</span>
+                                <span class="skc-pct">94%</span>
+                            </div>
+                            <div class="skc-track"><div class="skc-fill"></div></div>
+                        </div>
+
+                        <!-- JSX -->
+                        <div class="sk-card theme-purple" data-pct="88"
+                             style="--sk-grad: linear-gradient(90deg,#7c3aed,#a78bfa); --sk-color:#a78bfa; --sk-bg:rgba(124,58,237,0.08); --sk-glow:rgba(124,58,237,0.05);">
+                            <div class="skc-icon-wrap" style="background:rgba(124,58,237,0.1);">⚛️</div>
+                            <div class="skc-name">JSX</div>
+                            <div class="skc-sub">React syntax · Components · Props · Expressions</div>
+                            <div class="skc-meta">
+                                <span class="skc-level" style="color:#a78bfa;">Advanced</span>
+                                <span class="skc-pct">88%</span>
+                            </div>
+                            <div class="skc-track"><div class="skc-fill"></div></div>
+                        </div>
+
+                        <!-- Algorithms -->
+                        <div class="sk-card theme-purple" data-pct="82"
+                             style="--sk-grad: linear-gradient(90deg,#7c3aed,#a78bfa); --sk-color:#a78bfa; --sk-bg:rgba(124,58,237,0.08); --sk-glow:rgba(124,58,237,0.05);">
+                            <div class="skc-icon-wrap" style="background:rgba(124,58,237,0.1);">🔢</div>
+                            <div class="skc-name">Algorithms</div>
+                            <div class="skc-sub">Searching · Sorting · Hashing · Two pointers · Sliding window · Problem solving</div>
+                            <div class="skc-meta">
+                                <span class="skc-level" style="color:#a78bfa;">Proficient</span>
+                                <span class="skc-pct">82%</span>
+                            </div>
+                            <div class="skc-track"><div class="skc-fill"></div></div>
+                        </div>
+
+                        <!-- Data Structures -->
+                        <div class="sk-card theme-purple" data-pct="83"
+                             style="--sk-grad: linear-gradient(90deg,#7c3aed,#a78bfa); --sk-color:#a78bfa; --sk-bg:rgba(124,58,237,0.08); --sk-glow:rgba(124,58,237,0.05);">
+                            <div class="skc-icon-wrap" style="background:rgba(124,58,237,0.1);">📊</div>
+                            <div class="skc-name">Data Structures</div>
+                            <div class="skc-sub">Arrays · Strings · Linked Lists · Stack · Queue · HashMap</div>
+                            <div class="skc-meta">
+                                <span class="skc-level" style="color:#a78bfa;">Proficient</span>
+                                <span class="skc-pct">83%</span>
+                            </div>
+                            <div class="skc-track"><div class="skc-fill"></div></div>
+                        </div>
+
+                        <!-- Object-Oriented Programming -->
+                        <div class="sk-card theme-purple" data-pct="89"
+                             style="--sk-grad: linear-gradient(90deg,#7c3aed,#a78bfa); --sk-color:#a78bfa; --sk-bg:rgba(124,58,237,0.08); --sk-glow:rgba(124,58,237,0.05);">
+                            <div class="skc-icon-wrap" style="background:rgba(124,58,237,0.1);">🏗️</div>
+                            <div class="skc-name">Object-Oriented Programming</div>
+                            <div class="skc-sub">Encapsulation · Inheritance · Polymorphism · Abstraction · Method Overriding</div>
+                            <div class="skc-meta">
+                                <span class="skc-level" style="color:#a78bfa;">Proficient</span>
+                                <span class="skc-pct">89%</span>
+                            </div>
+                            <div class="skc-track"><div class="skc-fill"></div></div>
+                        </div>
+
+                        <!-- Exception Handling -->
+                        <div class="sk-card theme-purple" data-pct="84"
+                             style="--sk-grad: linear-gradient(90deg,#7c3aed,#a78bfa); --sk-color:#a78bfa; --sk-bg:rgba(124,58,237,0.08); --sk-glow:rgba(124,58,237,0.05);">
+                            <div class="skc-icon-wrap" style="background:rgba(124,58,237,0.1);">⚠️</div>
+                            <div class="skc-name">Exception Handling</div>
+                            <div class="skc-sub">Try-catch · Error handling · Debugging · Logging</div>
+                            <div class="skc-meta">
+                                <span class="skc-level" style="color:#a78bfa;">Advanced</span>
+                                <span class="skc-pct">84%</span>
+                            </div>
+                            <div class="skc-track"><div class="skc-fill"></div></div>
+                        </div>
+
+                        <!-- Debugging -->
+                        <div class="sk-card theme-purple" data-pct="90"
+                             style="--sk-grad: linear-gradient(90deg,#7c3aed,#a78bfa); --sk-color:#a78bfa; --sk-bg:rgba(124,58,237,0.08); --sk-glow:rgba(124,58,237,0.05);">
+                            <div class="skc-icon-wrap" style="background:rgba(124,58,237,0.1);">🐛</div>
+                            <div class="skc-name">Debugging</div>
+                            <div class="skc-sub">Console · Breakpoints · Stack traces · Error analysis</div>
+                            <div class="skc-meta">
+                                <span class="skc-level" style="color:#a78bfa;">Advanced</span>
+                                <span class="skc-pct">90%</span>
+                            </div>
+                            <div class="skc-track"><div class="skc-fill"></div></div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- ──────────────────────────────────────────────
+                     03 / 06 · UI / UX DESIGN
+                     ────────────────────────────────────────────── -->
+                <div class="cat-block" data-category="uiux">
+                    <div class="cat-header">
+                        <div class="cat-icon ci-orange">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#fb923c" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 21V9"/></svg>
+                        </div>
+                        <div class="cat-info">
+                            <div class="cat-num">03 / 11</div>
+                            <div class="cat-name">UI / UX Design</div>
+                            <div class="cat-desc">// Figma to Code · Tailwind CSS · Grid &amp; Flexbox · Mobile-First · Design Systems</div>
+                        </div>
+                        <div class="cat-badge">5 skills</div>
+                    </div>
+
+                    <div class="skill-cards">
+                        <!-- Tailwind CSS -->
+                        <div class="sk-card theme-orange" data-pct="85"
+                             style="--sk-grad: linear-gradient(90deg,#f97316,#fb923c); --sk-color:#fb923c; --sk-bg:rgba(249,115,22,0.08); --sk-glow:rgba(249,115,22,0.05);">
+                            <div class="skc-icon-wrap">💨</div>
+                            <div class="skc-name">Tailwind CSS</div>
+                            <div class="skc-sub">Utility-first · Dark mode · JIT · Custom config</div>
+                            <div class="skc-meta">
+                                <span class="skc-level" style="color:#fb923c;">Advanced</span>
+                                <span class="skc-pct">85%</span>
+                            </div>
+                            <div class="skc-track"><div class="skc-fill"></div></div>
+                        </div>
+
+                        <!-- CSS Grid & Flexbox -->
+                        <div class="sk-card theme-orange" data-pct="92"
+                             style="--sk-grad: linear-gradient(90deg,#f97316,#fb923c); --sk-color:#fb923c; --sk-bg:rgba(249,115,22,0.08); --sk-glow:rgba(249,115,22,0.05);">
+                            <div class="skc-icon-wrap">📐</div>
+                            <div class="skc-name">CSS Grid &amp; Flexbox</div>
+                            <div class="skc-sub">Complex layouts · Auto-fill · Subgrid · Alignment</div>
+                            <div class="skc-meta">
+                                <span class="skc-level" style="color:#fb923c;">Expert</span>
+                                <span class="skc-pct">92%</span>
+                            </div>
+                            <div class="skc-track"><div class="skc-fill"></div></div>
+                        </div>
+
+                        <!-- Figma to Code -->
+                        <div class="sk-card theme-orange" data-pct="78"
+                             style="--sk-grad: linear-gradient(90deg,#f97316,#fb923c); --sk-color:#fb923c; --sk-bg:rgba(249,115,22,0.08); --sk-glow:rgba(249,115,22,0.05);">
+                            <div class="skc-icon-wrap">🖼️</div>
+                            <div class="skc-name">Figma → Code</div>
+                            <div class="skc-sub">Pixel-perfect · Design handoff · Component mapping</div>
+                            <div class="skc-meta">
+                                <span class="skc-level" style="color:#fb923c;">Proficient</span>
+                                <span class="skc-pct">78%</span>
+                            </div>
+                            <div class="skc-track"><div class="skc-fill"></div></div>
+                        </div>
+
+                        <!-- Mobile-First Design -->
+                        <div class="sk-card theme-orange" data-pct="90"
+                             style="--sk-grad: linear-gradient(90deg,#f97316,#fb923c); --sk-color:#fb923c; --sk-bg:rgba(249,115,22,0.08); --sk-glow:rgba(249,115,22,0.05);">
+                            <div class="skc-icon-wrap">📱</div>
+                            <div class="skc-name">Mobile-First Design</div>
+                            <div class="skc-sub">Responsive · Breakpoints · Touch-friendly UX</div>
+                            <div class="skc-meta">
+                                <span class="skc-level" style="color:#fb923c;">Expert</span>
+                                <span class="skc-pct">90%</span>
+                            </div>
+                            <div class="skc-track"><div class="skc-fill"></div></div>
+                        </div>
+
+                        <!-- Design Systems -->
+                        <div class="sk-card theme-orange" data-pct="80"
+                             style="--sk-grad: linear-gradient(90deg,#f97316,#fb923c); --sk-color:#fb923c; --sk-bg:rgba(249,115,22,0.08); --sk-glow:rgba(249,115,22,0.05);">
+                            <div class="skc-icon-wrap">🎯</div>
+                            <div class="skc-name">Design Systems</div>
+                            <div class="skc-sub">Buttons · Forms · Spacing tokens · Consistency</div>
+                            <div class="skc-meta">
+                                <span class="skc-level" style="color:#fb923c;">Advanced</span>
+                                <span class="skc-pct">80%</span>
+                            </div>
+                            <div class="skc-track"><div class="skc-fill"></div></div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- ──────────────────────────────────────────────
+                     03 / 05 · API & BACKEND BASICS
+                     ────────────────────────────────────────────── -->
+                <div class="cat-block" data-category="api">
+                    <div class="cat-header">
+                        <div class="cat-icon ci-green">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#34d399" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 15s1-1 4-1 5 2 8 2 4-1 4-1V3s-1 1-4 1-5-2-8-2-4 1-4 1z"/><line x1="4" y1="22" x2="4" y2="15"/></svg>
+                        </div>
+                        <div class="cat-info">
+                            <div class="cat-num">04 / 11</div>
+                            <div class="cat-name">API &amp; Backend Basics</div>
+                            <div class="cat-desc">// Node.js · Express.js · RESTful APIs · JWT · OAuth · Error Handling</div>
+                        </div>
+                        <div class="cat-badge">13 skills</div>
+                    </div>
+
+                    <div class="skill-cards">
+                        <!-- REST API Integration -->
+                        <div class="sk-card theme-green" data-pct="87"
+                             style="--sk-grad: linear-gradient(90deg,#10b981,#34d399); --sk-color:#34d399; --sk-bg:rgba(16,185,129,0.08); --sk-glow:rgba(16,185,129,0.05);">
+                            <div class="skc-icon-wrap">🔌</div>
+                            <div class="skc-name">REST API Integration</div>
+                            <div class="skc-sub">CRUD · Endpoints · Headers · Status codes</div>
+                            <div class="skc-meta">
+                                <span class="skc-level" style="color:#34d399;">Advanced</span>
+                                <span class="skc-pct">87%</span>
+                            </div>
+                            <div class="skc-track"><div class="skc-fill"></div></div>
+                        </div>
+
+                        <!-- Fetch API / Axios -->
+                        <div class="sk-card theme-green" data-pct="85"
+                             style="--sk-grad: linear-gradient(90deg,#10b981,#34d399); --sk-color:#34d399; --sk-bg:rgba(16,185,129,0.08); --sk-glow:rgba(16,185,129,0.05);">
+                            <div class="skc-icon-wrap">📡</div>
+                            <div class="skc-name">Fetch API / Axios</div>
+                            <div class="skc-sub">Async requests · Interceptors · Cancellation · Retries</div>
+                            <div class="skc-meta">
+                                <span class="skc-level" style="color:#34d399;">Advanced</span>
+                                <span class="skc-pct">85%</span>
+                            </div>
+                            <div class="skc-track"><div class="skc-fill"></div></div>
+                        </div>
+
+                        <!-- JSON Handling -->
+                        <div class="sk-card theme-green" data-pct="93"
+                             style="--sk-grad: linear-gradient(90deg,#10b981,#34d399); --sk-color:#34d399; --sk-bg:rgba(16,185,129,0.08); --sk-glow:rgba(16,185,129,0.05);">
+                            <div class="skc-icon-wrap">📦</div>
+                            <div class="skc-name">JSON Handling</div>
+                            <div class="skc-sub">Parse · Transform · Validate · Nested structures</div>
+                            <div class="skc-meta">
+                                <span class="skc-level" style="color:#34d399;">Expert</span>
+                                <span class="skc-pct">93%</span>
+                            </div>
+                            <div class="skc-track"><div class="skc-fill"></div></div>
+                        </div>
+
+                        <!-- JWT Authentication -->
+                        <div class="sk-card theme-green" data-pct="83"
+                             style="--sk-grad: linear-gradient(90deg,#10b981,#34d399); --sk-color:#34d399; --sk-bg:rgba(16,185,129,0.08); --sk-glow:rgba(16,185,129,0.05);">
+                            <div class="skc-icon-wrap">🔐</div>
+                            <div class="skc-name">JWT Authentication</div>
+                            <div class="skc-sub">Token-based auth · Claims · Secure APIs</div>
+                            <div class="skc-meta">
+                                <span class="skc-level" style="color:#34d399;">Advanced</span>
+                                <span class="skc-pct">83%</span>
+                            </div>
+                            <div class="skc-track"><div class="skc-fill"></div></div>
+                        </div>
+
+                        <!-- OAuth Basics -->
+                        <div class="sk-card theme-green" data-pct="80"
+                             style="--sk-grad: linear-gradient(90deg,#10b981,#34d399); --sk-color:#34d399; --sk-bg:rgba(16,185,129,0.08); --sk-glow:rgba(16,185,129,0.05);">
+                            <div class="skc-icon-wrap">🛡️</div>
+                            <div class="skc-name">OAuth Basics</div>
+                            <div class="skc-sub">Authorization flows · Scopes · Client secrets</div>
+                            <div class="skc-meta">
+                                <span class="skc-level" style="color:#34d399;">Advanced</span>
+                                <span class="skc-pct">80%</span>
+                            </div>
+                            <div class="skc-track"><div class="skc-fill"></div></div>
+                        </div>
+
+                        <!-- Node.js -->
+                        <div class="sk-card theme-green" data-pct="90"
+                             style="--sk-grad: linear-gradient(90deg,#10b981,#34d399); --sk-color:#34d399; --sk-bg:rgba(16,185,129,0.08); --sk-glow:rgba(16,185,129,0.05);">
+                            <div class="skc-icon-wrap">🟩</div>
+                            <div class="skc-name">Node.js</div>
+                            <div class="skc-sub">Server runtime · Event loop · npm · APIs</div>
+                            <div class="skc-meta">
+                                <span class="skc-level" style="color:#34d399;">Expert</span>
+                                <span class="skc-pct">90%</span>
+                            </div>
+                            <div class="skc-track"><div class="skc-fill"></div></div>
+                        </div>
+
+                        <!-- Express.js -->
+                        <div class="sk-card theme-green" data-pct="88"
+                             style="--sk-grad: linear-gradient(90deg,#10b981,#34d399); --sk-color:#34d399; --sk-bg:rgba(16,185,129,0.08); --sk-glow:rgba(16,185,129,0.05);">
+                            <div class="skc-icon-wrap">🚂</div>
+                            <div class="skc-name">Express.js</div>
+                            <div class="skc-sub">Routing · Middleware · APIs · REST servers</div>
+                            <div class="skc-meta">
+                                <span class="skc-level" style="color:#34d399;">Advanced</span>
+                                <span class="skc-pct">88%</span>
+                            </div>
+                            <div class="skc-track"><div class="skc-fill"></div></div>
+                        </div>
+
+                        <!-- RESTful Architecture -->
+                        <div class="sk-card theme-green" data-pct="84"
+                             style="--sk-grad: linear-gradient(90deg,#10b981,#34d399); --sk-color:#34d399; --sk-bg:rgba(16,185,129,0.08); --sk-glow:rgba(16,185,129,0.05);">
+                            <div class="skc-icon-wrap">🧱</div>
+                            <div class="skc-name">RESTful Architecture</div>
+                            <div class="skc-sub">Stateless design · Resources · HATEOAS · Idempotency</div>
+                            <div class="skc-meta">
+                                <span class="skc-level" style="color:#34d399;">Advanced</span>
+                                <span class="skc-pct">84%</span>
+                            </div>
+                            <div class="skc-track"><div class="skc-fill"></div></div>
+                        </div>
+
+                        <!-- RESTful Web Services -->
+                        <div class="sk-card theme-green" data-pct="86"
+                             style="--sk-grad: linear-gradient(90deg,#10b981,#34d399); --sk-color:#34d399; --sk-bg:rgba(16,185,129,0.08); --sk-glow:rgba(16,185,129,0.05);">
+                            <div class="skc-icon-wrap">🌐</div>
+                            <div class="skc-name">RESTful Web Services</div>
+                            <div class="skc-sub">HTTP APIs · Resource URIs · Status semantics</div>
+                            <div class="skc-meta">
+                                <span class="skc-level" style="color:#34d399;">Advanced</span>
+                                <span class="skc-pct">86%</span>
+                            </div>
+                            <div class="skc-track"><div class="skc-fill"></div></div>
+                        </div>
+
+                        <!-- API Development -->
+                        <div class="sk-card theme-green" data-pct="91"
+                             style="--sk-grad: linear-gradient(90deg,#10b981,#34d399); --sk-color:#34d399; --sk-bg:rgba(16,185,129,0.08); --sk-glow:rgba(16,185,129,0.05);">
+                            <div class="skc-icon-wrap">🛠️</div>
+                            <div class="skc-name">API Development</div>
+                            <div class="skc-sub">Design · Documentation · Versioning · Testing</div>
+                            <div class="skc-meta">
+                                <span class="skc-level" style="color:#34d399;">Expert</span>
+                                <span class="skc-pct">91%</span>
+                            </div>
+                            <div class="skc-track"><div class="skc-fill"></div></div>
+                        </div>
+
+                        <!-- Application Programming Interfaces -->
+                        <div class="sk-card theme-green" data-pct="89"
+                             style="--sk-grad: linear-gradient(90deg,#10b981,#34d399); --sk-color:#34d399; --sk-bg:rgba(16,185,129,0.08); --sk-glow:rgba(16,185,129,0.05);">
+                            <div class="skc-icon-wrap">🔧</div>
+                            <div class="skc-name">Application Programming Interfaces</div>
+                            <div class="skc-sub">Contracts · Endpoints · Payloads · Integration</div>
+                            <div class="skc-meta">
+                                <span class="skc-level" style="color:#34d399;">Advanced</span>
+                                <span class="skc-pct">89%</span>
+                            </div>
+                            <div class="skc-track"><div class="skc-fill"></div></div>
+                        </div>
+
+                        <!-- HTTP Methods -->
+                        <div class="sk-card theme-green" data-pct="90"
+                             style="--sk-grad: linear-gradient(90deg,#10b981,#34d399); --sk-color:#34d399; --sk-bg:rgba(16,185,129,0.08); --sk-glow:rgba(16,185,129,0.05);">
+                            <div class="skc-icon-wrap">🔁</div>
+                            <div class="skc-name">HTTP Methods</div>
+                            <div class="skc-sub">GET · POST · PUT · DELETE · PATCH</div>
+                            <div class="skc-meta">
+                                <span class="skc-level" style="color:#34d399;">Expert</span>
+                                <span class="skc-pct">90%</span>
+                            </div>
+                            <div class="skc-track"><div class="skc-fill"></div></div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- ──────────────────────────────────────────────
+                     05 / 08 · SOFTWARE ENGINEERING
+                     ────────────────────────────────────────────── -->
+                <div class="cat-block" data-category="software-eng">
+                    <div class="cat-header">
+                        <div class="cat-icon ci-green">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#34d399" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 4h14M5 12h14M5 20h14"/><path d="M7 4l3 8m0 0l3-8m-3 8v8"/></svg>
+                        </div>
+                        <div class="cat-info">
+                            <div class="cat-num">05 / 11</div>
+                            <div class="cat-name">Software Engineering</div>
+                            <div class="cat-desc">// Development process · Team collaboration · System design · Engineering culture</div>
+                        </div>
+                        <div class="cat-badge">13 skills</div>
+                    </div>
+
+                    <div class="skill-cards">
+                        <!-- Software Engineering -->
+                        <div class="sk-card theme-green" data-pct="92"
+                             style="--sk-grad: linear-gradient(90deg,#10b981,#34d399); --sk-color:#34d399; --sk-bg:rgba(16,185,129,0.08); --sk-glow:rgba(16,185,129,0.05);">
+                            <div class="skc-icon-wrap">⚙️</div>
+                            <div class="skc-name">Software Engineering</div>
+                            <div class="skc-sub">Design · Quality · Process · Lifecycle</div>
+                            <div class="skc-meta">
+                                <span class="skc-level" style="color:#34d399;">Expert</span>
+                                <span class="skc-pct">92%</span>
+                            </div>
+                            <div class="skc-track"><div class="skc-fill"></div></div>
+                        </div>
+
+                        <!-- Software Development -->
+                        <div class="sk-card theme-green" data-pct="90"
+                             style="--sk-grad: linear-gradient(90deg,#10b981,#34d399); --sk-color:#34d399; --sk-bg:rgba(16,185,129,0.08); --sk-glow:rgba(16,185,129,0.05);">
+                            <div class="skc-icon-wrap">💻</div>
+                            <div class="skc-name">Software Development</div>
+                            <div class="skc-sub">Build · Test · Deploy · Maintain</div>
+                            <div class="skc-meta">
+                                <span class="skc-level" style="color:#34d399;">Expert</span>
+                                <span class="skc-pct">90%</span>
+                            </div>
+                            <div class="skc-track"><div class="skc-fill"></div></div>
+                        </div>
+
+                        <!-- Web Engineering -->
+                        <div class="sk-card theme-green" data-pct="89"
+                             style="--sk-grad: linear-gradient(90deg,#10b981,#34d399); --sk-color:#34d399; --sk-bg:rgba(16,185,129,0.08); --sk-glow:rgba(16,185,129,0.05);">
+                            <div class="skc-icon-wrap">🌐</div>
+                            <div class="skc-name">Web Engineering</div>
+                            <div class="skc-sub">Web systems · Platform design · Resilience</div>
+                            <div class="skc-meta">
+                                <span class="skc-level" style="color:#34d399;">Advanced</span>
+                                <span class="skc-pct">89%</span>
+                            </div>
+                            <div class="skc-track"><div class="skc-fill"></div></div>
+                        </div>
+
+                        <!-- Web Architecture -->
+                        <div class="sk-card theme-green" data-pct="88"
+                             style="--sk-grad: linear-gradient(90deg,#10b981,#34d399); --sk-color:#34d399; --sk-bg:rgba(16,185,129,0.08); --sk-glow:rgba(16,185,129,0.05);">
+                            <div class="skc-icon-wrap">🏛️</div>
+                            <div class="skc-name">Web Architecture</div>
+                            <div class="skc-sub">Components · Services · Performance · Scale</div>
+                            <div class="skc-meta">
+                                <span class="skc-level" style="color:#34d399;">Advanced</span>
+                                <span class="skc-pct">88%</span>
+                            </div>
+                            <div class="skc-track"><div class="skc-fill"></div></div>
+                        </div>
+
+                        <!-- Scalable Web Applications -->
+                        <div class="sk-card theme-green" data-pct="86"
+                             style="--sk-grad: linear-gradient(90deg,#10b981,#34d399); --sk-color:#34d399; --sk-bg:rgba(16,185,129,0.08); --sk-glow:rgba(16,185,129,0.05);">
+                            <div class="skc-icon-wrap">📈</div>
+                            <div class="skc-name">Scalable Web Applications</div>
+                            <div class="skc-sub">Load · Caching · Fault tolerance · Growth</div>
+                            <div class="skc-meta">
+                                <span class="skc-level" style="color:#34d399;">Advanced</span>
+                                <span class="skc-pct">86%</span>
+                            </div>
+                            <div class="skc-track"><div class="skc-fill"></div></div>
+                        </div>
+
+                        <!-- System Design Fundamentals -->
+                        <div class="sk-card theme-green" data-pct="85"
+                             style="--sk-grad: linear-gradient(90deg,#10b981,#34d399); --sk-color:#34d399; --sk-bg:rgba(16,185,129,0.08); --sk-glow:rgba(16,185,129,0.05);">
+                            <div class="skc-icon-wrap">🧩</div>
+                            <div class="skc-name">System Design Fundamentals</div>
+                            <div class="skc-sub">Components · Scalability · Tradeoffs · Reliability</div>
+                            <div class="skc-meta">
+                                <span class="skc-level" style="color:#34d399;">Advanced</span>
+                                <span class="skc-pct">85%</span>
+                            </div>
+                            <div class="skc-track"><div class="skc-fill"></div></div>
+                        </div>
+
+                        <!-- Developer Tools -->
+                        <div class="sk-card theme-green" data-pct="91"
+                             style="--sk-grad: linear-gradient(90deg,#10b981,#34d399); --sk-color:#34d399; --sk-bg:rgba(16,185,129,0.08); --sk-glow:rgba(16,185,129,0.05);">
+                            <div class="skc-icon-wrap">🛠️</div>
+                            <div class="skc-name">Developer Tools</div>
+                            <div class="skc-sub">Editors · Debuggers · CI/CD · Dev workflows</div>
+                            <div class="skc-meta">
+                                <span class="skc-level" style="color:#34d399;">Expert</span>
+                                <span class="skc-pct">91%</span>
+                            </div>
+                            <div class="skc-track"><div class="skc-fill"></div></div>
+                        </div>
+
+                        <!-- Team Collaboration -->
+                        <div class="sk-card theme-green" data-pct="90"
+                             style="--sk-grad: linear-gradient(90deg,#10b981,#34d399); --sk-color:#34d399; --sk-bg:rgba(16,185,129,0.08); --sk-glow:rgba(16,185,129,0.05);">
+                            <div class="skc-icon-wrap">🤝</div>
+                            <div class="skc-name">Team Collaboration</div>
+                            <div class="skc-sub">Communication · Agile · Reviews · Planning</div>
+                            <div class="skc-meta">
+                                <span class="skc-level" style="color:#34d399;">Expert</span>
+                                <span class="skc-pct">90%</span>
+                            </div>
+                            <div class="skc-track"><div class="skc-fill"></div></div>
+                        </div>
+
+                        <!-- Team Facilitation -->
+                        <div class="sk-card theme-green" data-pct="84"
+                             style="--sk-grad: linear-gradient(90deg,#10b981,#34d399); --sk-color:#34d399; --sk-bg:rgba(16,185,129,0.08); --sk-glow:rgba(16,185,129,0.05);">
+                            <div class="skc-icon-wrap">🗣️</div>
+                            <div class="skc-name">Team Facilitation</div>
+                            <div class="skc-sub">Meetings · Workshops · Alignment · Feedback</div>
+                            <div class="skc-meta">
+                                <span class="skc-level" style="color:#34d399;">Advanced</span>
+                                <span class="skc-pct">84%</span>
+                            </div>
+                            <div class="skc-track"><div class="skc-fill"></div></div>
+                        </div>
+
+                        <!-- Portfolio Management -->
+                        <div class="sk-card theme-green" data-pct="82"
+                             style="--sk-grad: linear-gradient(90deg,#10b981,#34d399); --sk-color:#34d399; --sk-bg:rgba(16,185,129,0.08); --sk-glow:rgba(16,185,129,0.05);">
+                            <div class="skc-icon-wrap">📁</div>
+                            <div class="skc-name">Portfolio Management</div>
+                            <div class="skc-sub">Project tracking · Prioritization · Reporting</div>
+                            <div class="skc-meta">
+                                <span class="skc-level" style="color:#34d399;">Advanced</span>
+                                <span class="skc-pct">82%</span>
+                            </div>
+                            <div class="skc-track"><div class="skc-fill"></div></div>
+                        </div>
+
+                        <!-- Research Skills -->
+                        <div class="sk-card theme-green" data-pct="83"
+                             style="--sk-grad: linear-gradient(90deg,#10b981,#34d399); --sk-color:#34d399; --sk-bg:rgba(16,185,129,0.08); --sk-glow:rgba(16,185,129,0.05);">
+                            <div class="skc-icon-wrap">🔎</div>
+                            <div class="skc-name">Research Skills</div>
+                            <div class="skc-sub">Analysis · Trends · Validation · Proof of concept</div>
+                            <div class="skc-meta">
+                                <span class="skc-level" style="color:#34d399;">Advanced</span>
+                                <span class="skc-pct">83%</span>
+                            </div>
+                            <div class="skc-track"><div class="skc-fill"></div></div>
+                        </div>
+
+                        <!-- Technical Presentations -->
+                        <div class="sk-card theme-green" data-pct="85"
+                             style="--sk-grad: linear-gradient(90deg,#10b981,#34d399); --sk-color:#34d399; --sk-bg:rgba(16,185,129,0.08); --sk-glow:rgba(16,185,129,0.05);">
+                            <div class="skc-icon-wrap">🎤</div>
+                            <div class="skc-name">Technical Presentations</div>
+                            <div class="skc-sub">Demos · Storytelling · Knowledge sharing</div>
+                            <div class="skc-meta">
+                                <span class="skc-level" style="color:#34d399;">Advanced</span>
+                                <span class="skc-pct">85%</span>
+                            </div>
+                            <div class="skc-track"><div class="skc-fill"></div></div>
+                        </div>
+
+                        <!-- Search Engine Ranking (SEO) -->
+                        <div class="sk-card theme-green" data-pct="81"
+                             style="--sk-grad: linear-gradient(90deg,#10b981,#34d399); --sk-color:#34d399; --sk-bg:rgba(16,185,129,0.08); --sk-glow:rgba(16,185,129,0.05);">
+                            <div class="skc-icon-wrap">🔍</div>
+                            <div class="skc-name">Search Engine Ranking (SEO)</div>
+                            <div class="skc-sub">Content · Performance · Metadata · Crawlability</div>
+                            <div class="skc-meta">
+                                <span class="skc-level" style="color:#34d399;">Advanced</span>
+                                <span class="skc-pct">81%</span>
+                            </div>
+                            <div class="skc-track"><div class="skc-fill"></div></div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- ──────────────────────────────────────────────
+                     06 / 09 · DATABASE SYSTEMS
+                     ────────────────────────────────────────────── -->
+                <div class="cat-block" data-category="database">
+                    <div class="cat-header">
+                        <div class="cat-icon ci-teal">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#22d3ee" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 6h16M4 12h16M4 18h16"/><path d="M4 6l8 6 8-6"/></svg>
+                        </div>
+                        <div class="cat-info">
+                            <div class="cat-num">06 / 11</div>
+                            <div class="cat-name">Database Systems</div>
+                            <div class="cat-desc">// MongoDB · SQL · NoSQL · Data Modeling · Indexing</div>
+                        </div>
+                        <div class="cat-badge">11 skills</div>
+                    </div>
+
+                    <div class="skill-cards">
+                        <!-- MongoDB -->
+                        <div class="sk-card theme-green" data-pct="90"
+                             style="--sk-grad: linear-gradient(90deg,#10b981,#34d399); --sk-color:#34d399; --sk-bg:rgba(16,185,129,0.08); --sk-glow:rgba(16,185,129,0.05);">
+                            <div class="skc-icon-wrap">🍃</div>
+                            <div class="skc-name">MongoDB</div>
+                            <div class="skc-sub">Collections · Documents · Aggregation · Indexing</div>
+                            <div class="skc-meta">
+                                <span class="skc-level" style="color:#34d399;">Expert</span>
+                                <span class="skc-pct">90%</span>
+                            </div>
+                            <div class="skc-track"><div class="skc-fill"></div></div>
+                        </div>
+
+                        <!-- SQL -->
+                        <div class="sk-card theme-green" data-pct="92"
+                             style="--sk-grad: linear-gradient(90deg,#10b981,#34d399); --sk-color:#34d399; --sk-bg:rgba(16,185,129,0.08); --sk-glow:rgba(16,185,129,0.05);">
+                            <div class="skc-icon-wrap">💾</div>
+                            <div class="skc-name">SQL</div>
+                            <div class="skc-sub">SELECT · JOIN · GROUP BY · Transactions</div>
+                            <div class="skc-meta">
+                                <span class="skc-level" style="color:#34d399;">Expert</span>
+                                <span class="skc-pct">92%</span>
+                            </div>
+                            <div class="skc-track"><div class="skc-fill"></div></div>
+                        </div>
+
+                        <!-- Relational Databases -->
+                        <div class="sk-card theme-green" data-pct="88"
+                             style="--sk-grad: linear-gradient(90deg,#10b981,#34d399); --sk-color:#34d399; --sk-bg:rgba(16,185,129,0.08); --sk-glow:rgba(16,185,129,0.05);">
+                            <div class="skc-icon-wrap">🧾</div>
+                            <div class="skc-name">Relational Databases</div>
+                            <div class="skc-sub">Tables · Keys · Normalization · Foreign relations</div>
+                            <div class="skc-meta">
+                                <span class="skc-level" style="color:#34d399;">Advanced</span>
+                                <span class="skc-pct">88%</span>
+                            </div>
+                            <div class="skc-track"><div class="skc-fill"></div></div>
+                        </div>
+
+                        <!-- DBMS -->
+                        <div class="sk-card theme-green" data-pct="86"
+                             style="--sk-grad: linear-gradient(90deg,#10b981,#34d399); --sk-color:#34d399; --sk-bg:rgba(16,185,129,0.08); --sk-glow:rgba(16,185,129,0.05);">
+                            <div class="skc-icon-wrap">🗄️</div>
+                            <div class="skc-name">DBMS</div>
+                            <div class="skc-sub">Storage engines · Transactions · Concurrency · Security</div>
+                            <div class="skc-meta">
+                                <span class="skc-level" style="color:#34d399;">Advanced</span>
+                                <span class="skc-pct">86%</span>
+                            </div>
+                            <div class="skc-track"><div class="skc-fill"></div></div>
+                        </div>
+
+                        <!-- Data Modeling -->
+                        <div class="sk-card theme-green" data-pct="89"
+                             style="--sk-grad: linear-gradient(90deg,#10b981,#34d399); --sk-color:#34d399; --sk-bg:rgba(16,185,129,0.08); --sk-glow:rgba(16,185,129,0.05);">
+                            <div class="skc-icon-wrap">📐</div>
+                            <div class="skc-name">Data Modeling</div>
+                            <div class="skc-sub">Schema design · Entities · Relationships · Normal forms</div>
+                            <div class="skc-meta">
+                                <span class="skc-level" style="color:#34d399;">Expert</span>
+                                <span class="skc-pct">89%</span>
+                            </div>
+                            <div class="skc-track"><div class="skc-fill"></div></div>
+                        </div>
+
+                        <!-- Query Optimization -->
+                        <div class="sk-card theme-green" data-pct="85"
+                             style="--sk-grad: linear-gradient(90deg,#10b981,#34d399); --sk-color:#34d399; --sk-bg:rgba(16,185,129,0.08); --sk-glow:rgba(16,185,129,0.05);">
+                            <div class="skc-icon-wrap">⚡</div>
+                            <div class="skc-name">Query Optimization</div>
+                            <div class="skc-sub">Indexes · Execution plans · Caching · Joins</div>
+                            <div class="skc-meta">
+                                <span class="skc-level" style="color:#34d399;">Advanced</span>
+                                <span class="skc-pct">85%</span>
+                            </div>
+                            <div class="skc-track"><div class="skc-fill"></div></div>
+                        </div>
+
+                        <!-- Database Design -->
+                        <div class="sk-card theme-green" data-pct="87"
+                             style="--sk-grad: linear-gradient(90deg,#10b981,#34d399); --sk-color:#34d399; --sk-bg:rgba(16,185,129,0.08); --sk-glow:rgba(16,185,129,0.05);">
+                            <div class="skc-icon-wrap">🏗️</div>
+                            <div class="skc-name">Database Design</div>
+                            <div class="skc-sub">Normalization · ER models · Constraints · Scalability</div>
+                            <div class="skc-meta">
+                                <span class="skc-level" style="color:#34d399;">Advanced</span>
+                                <span class="skc-pct">87%</span>
+                            </div>
+                            <div class="skc-track"><div class="skc-fill"></div></div>
+                        </div>
+
+                        <!-- Database Administration -->
+                        <div class="sk-card theme-green" data-pct="80"
+                             style="--sk-grad: linear-gradient(90deg,#10b981,#34d399); --sk-color:#34d399; --sk-bg:rgba(16,185,129,0.08); --sk-glow:rgba(16,185,129,0.05);">
+                            <div class="skc-icon-wrap">🛠️</div>
+                            <div class="skc-name">Database Administration</div>
+                            <div class="skc-sub">Backups · Monitoring · Migration · Access control</div>
+                            <div class="skc-meta">
+                                <span class="skc-level" style="color:#34d399;">Advanced</span>
+                                <span class="skc-pct">80%</span>
+                            </div>
+                            <div class="skc-track"><div class="skc-fill"></div></div>
+                        </div>
+
+                        <!-- Aggregation Framework -->
+                        <div class="sk-card theme-green" data-pct="83"
+                             style="--sk-grad: linear-gradient(90deg,#10b981,#34d399); --sk-color:#34d399; --sk-bg:rgba(16,185,129,0.08); --sk-glow:rgba(16,185,129,0.05);">
+                            <div class="skc-icon-wrap">📊</div>
+                            <div class="skc-name">Aggregation Framework</div>
+                            <div class="skc-sub">Pipelines · Grouping · Filtering · Transformations</div>
+                            <div class="skc-meta">
+                                <span class="skc-level" style="color:#34d399;">Advanced</span>
+                                <span class="skc-pct">83%</span>
+                            </div>
+                            <div class="skc-track"><div class="skc-fill"></div></div>
+                        </div>
+
+                        <!-- Indexing Design -->
+                        <div class="sk-card theme-green" data-pct="84"
+                             style="--sk-grad: linear-gradient(90deg,#10b981,#34d399); --sk-color:#34d399; --sk-bg:rgba(16,185,129,0.08); --sk-glow:rgba(16,185,129,0.05);">
+                            <div class="skc-icon-wrap">📌</div>
+                            <div class="skc-name">Indexing Design</div>
+                            <div class="skc-sub">B-tree · Compound indexes · Coverage · Performance</div>
+                            <div class="skc-meta">
+                                <span class="skc-level" style="color:#34d399;">Advanced</span>
+                                <span class="skc-pct">84%</span>
+                            </div>
+                            <div class="skc-track"><div class="skc-fill"></div></div>
+                        </div>
+
+                        <!-- NoSQL -->
+                        <div class="sk-card theme-green" data-pct="91"
+                             style="--sk-grad: linear-gradient(90deg,#10b981,#34d399); --sk-color:#34d399; --sk-bg:rgba(16,185,129,0.08); --sk-glow:rgba(16,185,129,0.05);">
+                            <div class="skc-icon-wrap">🌀</div>
+                            <div class="skc-name">NoSQL</div>
+                            <div class="skc-sub">Document · Key-value · Wide-column · Graph stores</div>
+                            <div class="skc-meta">
+                                <span class="skc-level" style="color:#34d399;">Expert</span>
+                                <span class="skc-pct">91%</span>
+                            </div>
+                            <div class="skc-track"><div class="skc-fill"></div></div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- ──────────────────────────────────────────────
+                     07 / 09 · ARTIFICIAL INTELLIGENCE
+                     ────────────────────────────────────────────── -->
+                <div class="cat-block" data-category="ai">
+                    <div class="cat-header">
+                        <div class="cat-icon ci-green">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#34d399" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 5h16M4 12h16M4 19h16"/><path d="M7 5l3 7 3-7m-3 7v7"/></svg>
+                        </div>
+                        <div class="cat-info">
+                            <div class="cat-num">07 / 11</div>
+                            <div class="cat-name">Artificial Intelligence</div>
+                            <div class="cat-desc">// AI models · ML · GPT · Chatbots · Prompt engineering</div>
+                        </div>
+                        <div class="cat-badge">8 skills</div>
+                    </div>
+
+                    <div class="skill-cards">
+                        <!-- Artificial Intelligence -->
+                        <div class="sk-card theme-green" data-pct="92"
+                             style="--sk-grad: linear-gradient(90deg,#10b981,#34d399); --sk-color:#34d399; --sk-bg:rgba(16,185,129,0.08); --sk-glow:rgba(16,185,129,0.05);">
+                            <div class="skc-icon-wrap">🤖</div>
+                            <div class="skc-name">Artificial Intelligence</div>
+                            <div class="skc-sub">AI systems · Intelligence · Model design · Ethics</div>
+                            <div class="skc-meta">
+                                <span class="skc-level" style="color:#34d399;">Expert</span>
+                                <span class="skc-pct">92%</span>
+                            </div>
+                            <div class="skc-track"><div class="skc-fill"></div></div>
+                        </div>
+
+                        <!-- Machine Learning -->
+                        <div class="sk-card theme-green" data-pct="90"
+                             style="--sk-grad: linear-gradient(90deg,#10b981,#34d399); --sk-color:#34d399; --sk-bg:rgba(16,185,129,0.08); --sk-glow:rgba(16,185,129,0.05);">
+                            <div class="skc-icon-wrap">📈</div>
+                            <div class="skc-name">Machine Learning</div>
+                            <div class="skc-sub">Supervised · Unsupervised · Models · Evaluation</div>
+                            <div class="skc-meta">
+                                <span class="skc-level" style="color:#34d399;">Expert</span>
+                                <span class="skc-pct">90%</span>
+                            </div>
+                            <div class="skc-track"><div class="skc-fill"></div></div>
+                        </div>
+
+                        <!-- AutoML -->
+                        <div class="sk-card theme-green" data-pct="86"
+                             style="--sk-grad: linear-gradient(90deg,#10b981,#34d399); --sk-color:#34d399; --sk-bg:rgba(16,185,129,0.08); --sk-glow:rgba(16,185,129,0.05);">
+                            <div class="skc-icon-wrap">⚙️</div>
+                            <div class="skc-name">AutoML</div>
+                            <div class="skc-sub">Model automation · Pipelines · Hyperparameter tuning</div>
+                            <div class="skc-meta">
+                                <span class="skc-level" style="color:#34d399;">Advanced</span>
+                                <span class="skc-pct">86%</span>
+                            </div>
+                            <div class="skc-track"><div class="skc-fill"></div></div>
+                        </div>
+
+                        <!-- GPT Integration -->
+                        <div class="sk-card theme-green" data-pct="88"
+                             style="--sk-grad: linear-gradient(90deg,#10b981,#34d399); --sk-color:#34d399; --sk-bg:rgba(16,185,129,0.08); --sk-glow:rgba(16,185,129,0.05);">
+                            <div class="skc-icon-wrap">🧠</div>
+                            <div class="skc-name">GPT Integration</div>
+                            <div class="skc-sub">API integration · Prompts · Conversational UX</div>
+                            <div class="skc-meta">
+                                <span class="skc-level" style="color:#34d399;">Advanced</span>
+                                <span class="skc-pct">88%</span>
+                            </div>
+                            <div class="skc-track"><div class="skc-fill"></div></div>
+                        </div>
+
+                        <!-- Chatbot Development -->
+                        <div class="sk-card theme-green" data-pct="87"
+                             style="--sk-grad: linear-gradient(90deg,#10b981,#34d399); --sk-color:#34d399; --sk-bg:rgba(16,185,129,0.08); --sk-glow:rgba(16,185,129,0.05);">
+                            <div class="skc-icon-wrap">💬</div>
+                            <div class="skc-name">Chatbot Development</div>
+                            <div class="skc-sub">Conversational flows · UX · Integrations · Testing</div>
+                            <div class="skc-meta">
+                                <span class="skc-level" style="color:#34d399;">Advanced</span>
+                                <span class="skc-pct">87%</span>
+                            </div>
+                            <div class="skc-track"><div class="skc-fill"></div></div>
+                        </div>
+
+                        <!-- AI Applications -->
+                        <div class="sk-card theme-green" data-pct="85"
+                             style="--sk-grad: linear-gradient(90deg,#10b981,#34d399); --sk-color:#34d399; --sk-bg:rgba(16,185,129,0.08); --sk-glow:rgba(16,185,129,0.05);">
+                            <div class="skc-icon-wrap">🚀</div>
+                            <div class="skc-name">AI Applications</div>
+                            <div class="skc-sub">Automation · Intelligence · Product features</div>
+                            <div class="skc-meta">
+                                <span class="skc-level" style="color:#34d399;">Advanced</span>
+                                <span class="skc-pct">85%</span>
+                            </div>
+                            <div class="skc-track"><div class="skc-fill"></div></div>
+                        </div>
+
+                        <!-- Data Analysis -->
+                        <div class="sk-card theme-green" data-pct="89"
+                             style="--sk-grad: linear-gradient(90deg,#10b981,#34d399); --sk-color:#34d399; --sk-bg:rgba(16,185,129,0.08); --sk-glow:rgba(16,185,129,0.05);">
+                            <div class="skc-icon-wrap">📊</div>
+                            <div class="skc-name">Data Analysis</div>
+                            <div class="skc-sub">Insights · Trends · Metrics · Decision support</div>
+                            <div class="skc-meta">
+                                <span class="skc-level" style="color:#34d399;">Expert</span>
+                                <span class="skc-pct">89%</span>
+                            </div>
+                            <div class="skc-track"><div class="skc-fill"></div></div>
+                        </div>
+
+                        <!-- Prompt Engineering -->
+                        <div class="sk-card theme-green" data-pct="84"
+                             style="--sk-grad: linear-gradient(90deg,#10b981,#34d399); --sk-color:#34d399; --sk-bg:rgba(16,185,129,0.08); --sk-glow:rgba(16,185,129,0.05);">
+                            <div class="skc-icon-wrap">✍️</div>
+                            <div class="skc-name">Prompt Engineering</div>
+                            <div class="skc-sub">Prompt design · Iteration · Context · Output control</div>
+                            <div class="skc-meta">
+                                <span class="skc-level" style="color:#34d399;">Advanced</span>
+                                <span class="skc-pct">84%</span>
+                            </div>
+                            <div class="skc-track"><div class="skc-fill"></div></div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- ──────────────────────────────────────────────
+                     08 / 10 · CLOUD COMPUTING
+                     ────────────────────────────────────────────── -->
+                <div class="cat-block" data-category="cloud">
+                    <div class="cat-header">
+                        <div class="cat-icon ci-blue">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#3b82f6" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 16a4 4 0 0 1 0-8 5 5 0 0 1 9.9 1.2A3.5 3.5 0 1 1 19 13H7"/></svg>
+                        </div>
+                        <div class="cat-info">
+                            <div class="cat-num">08 / 11</div>
+                            <div class="cat-name">Cloud Computing</div>
+                            <div class="cat-desc">// Cloud services · Deployments · Hosting platforms · Static sites</div>
+                        </div>
+                        <div class="cat-badge">6 skills</div>
+                    </div>
+
+                    <div class="skill-cards">
+                        <!-- Cloud Computing -->
+                        <div class="sk-card theme-blue" data-pct="91"
+                             style="--sk-grad: linear-gradient(90deg,#3b82f6,#60a5fa); --sk-color:#60a5fa; --sk-bg:rgba(59,130,246,0.08); --sk-glow:rgba(59,130,246,0.05);">
+                            <div class="skc-icon-wrap">☁️</div>
+                            <div class="skc-name">Cloud Computing</div>
+                            <div class="skc-sub">On-demand infrastructure · Scalability · Services</div>
+                            <div class="skc-meta">
+                                <span class="skc-level" style="color:#60a5fa;">Expert</span>
+                                <span class="skc-pct">91%</span>
+                            </div>
+                            <div class="skc-track"><div class="skc-fill"></div></div>
+                        </div>
+
+                        <!-- Vercel -->
+                        <div class="sk-card theme-blue" data-pct="89"
+                             style="--sk-grad: linear-gradient(90deg,#3b82f6,#60a5fa); --sk-color:#60a5fa; --sk-bg:rgba(59,130,246,0.08); --sk-glow:rgba(59,130,246,0.05);">
+                            <div class="skc-icon-wrap">▲</div>
+                            <div class="skc-name">Vercel</div>
+                            <div class="skc-sub">Modern deployment · Edge hosting · Serverless</div>
+                            <div class="skc-meta">
+                                <span class="skc-level" style="color:#60a5fa;">Advanced</span>
+                                <span class="skc-pct">89%</span>
+                            </div>
+                            <div class="skc-track"><div class="skc-fill"></div></div>
+                        </div>
+
+                        <!-- Netlify -->
+                        <div class="sk-card theme-blue" data-pct="88"
+                             style="--sk-grad: linear-gradient(90deg,#3b82f6,#60a5fa); --sk-color:#60a5fa; --sk-bg:rgba(59,130,246,0.08); --sk-glow:rgba(59,130,246,0.05);">
+                            <div class="skc-icon-wrap">🌐</div>
+                            <div class="skc-name">Netlify</div>
+                            <div class="skc-sub">Static site hosting · Functions · CDN delivery</div>
+                            <div class="skc-meta">
+                                <span class="skc-level" style="color:#60a5fa;">Advanced</span>
+                                <span class="skc-pct">88%</span>
+                            </div>
+                            <div class="skc-track"><div class="skc-fill"></div></div>
+                        </div>
+
+                        <!-- Render -->
+                        <div class="sk-card theme-blue" data-pct="86"
+                             style="--sk-grad: linear-gradient(90deg,#3b82f6,#60a5fa); --sk-color:#60a5fa; --sk-bg:rgba(59,130,246,0.08); --sk-glow:rgba(59,130,246,0.05);">
+                            <div class="skc-icon-wrap">▶️</div>
+                            <div class="skc-name">Render</div>
+                            <div class="skc-sub">App hosting · Containers · Persistent services</div>
+                            <div class="skc-meta">
+                                <span class="skc-level" style="color:#60a5fa;">Advanced</span>
+                                <span class="skc-pct">86%</span>
+                            </div>
+                            <div class="skc-track"><div class="skc-fill"></div></div>
+                        </div>
+
+                        <!-- Deployment -->
+                        <div class="sk-card theme-blue" data-pct="90"
+                             style="--sk-grad: linear-gradient(90deg,#3b82f6,#60a5fa); --sk-color:#60a5fa; --sk-bg:rgba(59,130,246,0.08); --sk-glow:rgba(59,130,246,0.05);">
+                            <div class="skc-icon-wrap">🚀</div>
+                            <div class="skc-name">Deployment</div>
+                            <div class="skc-sub">CI/CD · Releases · Rollouts · Monitoring</div>
+                            <div class="skc-meta">
+                                <span class="skc-level" style="color:#60a5fa;">Expert</span>
+                                <span class="skc-pct">90%</span>
+                            </div>
+                            <div class="skc-track"><div class="skc-fill"></div></div>
+                        </div>
+
+                        <!-- GitHub Pages -->
+                        <div class="sk-card theme-blue" data-pct="84"
+                             style="--sk-grad: linear-gradient(90deg,#3b82f6,#60a5fa); --sk-color:#60a5fa; --sk-bg:rgba(59,130,246,0.08); --sk-glow:rgba(59,130,246,0.05);">
+                            <div class="skc-icon-wrap">🐙</div>
+                            <div class="skc-name">GitHub Pages</div>
+                            <div class="skc-sub">Static hosting · Branch deploys · Pages workflows</div>
+                            <div class="skc-meta">
+                                <span class="skc-level" style="color:#60a5fa;">Advanced</span>
+                                <span class="skc-pct">84%</span>
+                            </div>
+                            <div class="skc-track"><div class="skc-fill"></div></div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- ──────────────────────────────────────────────
+                     09 / 11 · PROBLEM SOLVING & DSA
+                     ────────────────────────────────────────────── -->
+                <div class="cat-block" data-category="dsa">
+                    <div class="cat-header">
+                        <div class="cat-icon ci-purple">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#a78bfa" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg>
+                        </div>
+                        <div class="cat-info">
+                            <div class="cat-num">09 / 11</div>
+                            <div class="cat-name">Problem Solving &amp; DSA</div>
+                            <div class="cat-desc">// Arrays · Strings · Recursion · Greedy · Dynamic Programming · Graphs · Complexity</div>
+                        </div>
+                        <div class="cat-badge">8 skills</div>
+                    </div>
+
+                    <div class="skill-cards">
+                        <!-- Arrays & Strings -->
+                        <div class="sk-card theme-purple" data-pct="82"
+                             style="--sk-grad: linear-gradient(90deg,#7c3aed,#a78bfa); --sk-color:#a78bfa; --sk-bg:rgba(124,58,237,0.08); --sk-glow:rgba(124,58,237,0.05);">
+                            <div class="skc-icon-wrap" style="background:rgba(124,58,237,0.1);">📊</div>
+                            <div class="skc-name">Arrays &amp; Strings</div>
+                            <div class="skc-sub">Two pointers · Sliding window · Sorting · String parsing</div>
+                            <div class="skc-meta">
+                                <span class="skc-level" style="color:#a78bfa;">Advanced</span>
+                                <span class="skc-pct">82%</span>
+                            </div>
+                            <div class="skc-track"><div class="skc-fill"></div></div>
+                        </div>
+
+                        <!-- Objects & Maps -->
+                        <div class="sk-card theme-purple" data-pct="78"
+                             style="--sk-grad: linear-gradient(90deg,#7c3aed,#a78bfa); --sk-color:#a78bfa; --sk-bg:rgba(124,58,237,0.08); --sk-glow:rgba(124,58,237,0.05);">
+                            <div class="skc-icon-wrap" style="background:rgba(124,58,237,0.1);">🗂️</div>
+                            <div class="skc-name">Objects &amp; Maps</div>
+                            <div class="skc-sub">Hash maps · Frequency counts · Lookups · Iteration</div>
+                            <div class="skc-meta">
+                                <span class="skc-level" style="color:#a78bfa;">Advanced</span>
+                                <span class="skc-pct">78%</span>
+                            </div>
+                            <div class="skc-track"><div class="skc-fill"></div></div>
+                        </div>
+
+                        <!-- Recursion Fundamentals -->
+                        <div class="sk-card theme-purple" data-pct="74"
+                             style="--sk-grad: linear-gradient(90deg,#7c3aed,#a78bfa); --sk-color:#a78bfa; --sk-bg:rgba(124,58,237,0.08); --sk-glow:rgba(124,58,237,0.05);">
+                            <div class="skc-icon-wrap" style="background:rgba(124,58,237,0.1);">🔄</div>
+                            <div class="skc-name">Recursion Fundamentals</div>
+                            <div class="skc-sub">Base cases · Call stack · Divide and conquer · Memoization</div>
+                            <div class="skc-meta">
+                                <span class="skc-level" style="color:#a78bfa;">Proficient</span>
+                                <span class="skc-pct">74%</span>
+                            </div>
+                            <div class="skc-track"><div class="skc-fill"></div></div>
+                        </div>
+
+                        <!-- Greedy Strategies -->
+                        <div class="sk-card theme-purple" data-pct="76"
+                             style="--sk-grad: linear-gradient(90deg,#7c3aed,#a78bfa); --sk-color:#a78bfa; --sk-bg:rgba(124,58,237,0.08); --sk-glow:rgba(124,58,237,0.05);">
+                            <div class="skc-icon-wrap" style="background:rgba(124,58,237,0.1);">🏁</div>
+                            <div class="skc-name">Greedy Strategies</div>
+                            <div class="skc-sub">Local optimum · Scheduling · Interval selection · Cost minimization</div>
+                            <div class="skc-meta">
+                                <span class="skc-level" style="color:#a78bfa;">Proficient</span>
+                                <span class="skc-pct">76%</span>
+                            </div>
+                            <div class="skc-track"><div class="skc-fill"></div></div>
+                        </div>
+
+                        <!-- Dynamic Programming -->
+                        <div class="sk-card theme-purple" data-pct="80"
+                             style="--sk-grad: linear-gradient(90deg,#7c3aed,#a78bfa); --sk-color:#a78bfa; --sk-bg:rgba(124,58,237,0.08); --sk-glow:rgba(124,58,237,0.05);">
+                            <div class="skc-icon-wrap" style="background:rgba(124,58,237,0.1);">🧠</div>
+                            <div class="skc-name">Dynamic Programming</div>
+                            <div class="skc-sub">Memoization · Tabulation · Overlapping subproblems · Optimization</div>
+                            <div class="skc-meta">
+                                <span class="skc-level" style="color:#a78bfa;">Advanced</span>
+                                <span class="skc-pct">80%</span>
+                            </div>
+                            <div class="skc-track"><div class="skc-fill"></div></div>
+                        </div>
+
+                        <!-- Graph Basics -->
+                        <div class="sk-card theme-purple" data-pct="79"
+                             style="--sk-grad: linear-gradient(90deg,#7c3aed,#a78bfa); --sk-color:#a78bfa; --sk-bg:rgba(124,58,237,0.08); --sk-glow:rgba(124,58,237,0.05);">
+                            <div class="skc-icon-wrap" style="background:rgba(124,58,237,0.1);">🕸️</div>
+                            <div class="skc-name">Graph Basics</div>
+                            <div class="skc-sub">Nodes · Edges · BFS/DFS · Paths · Connectivity</div>
+                            <div class="skc-meta">
+                                <span class="skc-level" style="color:#a78bfa;">Advanced</span>
+                                <span class="skc-pct">79%</span>
+                            </div>
+                            <div class="skc-track"><div class="skc-fill"></div></div>
+                        </div>
+
+                        <!-- Sorting Techniques -->
+                        <div class="sk-card theme-purple" data-pct="81"
+                             style="--sk-grad: linear-gradient(90deg,#7c3aed,#a78bfa); --sk-color:#a78bfa; --sk-bg:rgba(124,58,237,0.08); --sk-glow:rgba(124,58,237,0.05);">
+                            <div class="skc-icon-wrap" style="background:rgba(124,58,237,0.1);">↕️</div>
+                            <div class="skc-name">Sorting Techniques</div>
+                            <div class="skc-sub">Quick sort · Merge sort · Heap sort · Performance tradeoffs</div>
+                            <div class="skc-meta">
+                                <span class="skc-level" style="color:#a78bfa;">Advanced</span>
+                                <span class="skc-pct">81%</span>
+                            </div>
+                            <div class="skc-track"><div class="skc-fill"></div></div>
+                        </div>
+
+                        <!-- Complexity Analysis -->
+                        <div class="sk-card theme-purple" data-pct="77"
+                             style="--sk-grad: linear-gradient(90deg,#7c3aed,#a78bfa); --sk-color:#a78bfa; --sk-bg:rgba(124,58,237,0.08); --sk-glow:rgba(124,58,237,0.05);">
+                            <div class="skc-icon-wrap" style="background:rgba(124,58,237,0.1);">⏱️</div>
+                            <div class="skc-name">Complexity Analysis</div>
+                            <div class="skc-sub">Big-O · Time/space tradeoffs · Performance reasoning</div>
+                            <div class="skc-meta">
+                                <span class="skc-level" style="color:#a78bfa;">Advanced</span>
+                                <span class="skc-pct">77%</span>
+                            </div>
+                            <div class="skc-track"><div class="skc-fill"></div></div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- ──────────────────────────────────────────────
+                     09 / 10 · TOOLS & DEVOPS
+                     ────────────────────────────────────────────── -->
+                <div class="cat-block" data-category="tools">
+                    <div class="cat-header">
+                        <div class="cat-icon ci-teal">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#22d3ee" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/></svg>
+                        </div>
+                        <div class="cat-info">
+                            <div class="cat-num">10 / 11</div>
+                            <div class="cat-name">Tools &amp; Workflow</div>
+                            <div class="cat-desc">// Git · GitHub · VS Code · Chrome DevTools · React DevTools · Postman · Postman API · npm · Yarn · Figma · Vercel · Netlify · Render</div>
+                        </div>
+                        <div class="cat-badge">13 tools</div>
+                    </div>
+
+                    <div class="tool-grid">
+                        <div class="tool-pill" style="--tpe-color: #f97316;">
+                            <span class="tp-dot" style="color:#f97316; background:#f97316;"></span>
+                            <span class="tp-icon">🌿</span> Git
+                        </div>
+                        <div class="tool-pill" style="--tpe-color: #ef4444;">
+                            <span class="tp-dot" style="color:#ef4444; background:#ef4444;"></span>
+                            <span class="tp-icon">🐙</span> GitHub
+                        </div>
+                        <div class="tool-pill" style="--tpe-color: #60a5fa;">
+                            <span class="tp-dot" style="color:#60a5fa; background:#60a5fa;"></span>
+                            <span class="tp-icon">💙</span> VS Code
+                        </div>
+                        <div class="tool-pill" style="--tpe-color: #fbbf24;">
+                            <span class="tp-dot" style="color:#fbbf24; background:#fbbf24;"></span>
+                            <span class="tp-icon">🔍</span> Chrome DevTools
+                        </div>
+                        <div class="tool-pill" style="--tpe-color: #fb923c;">
+                            <span class="tp-dot" style="color:#fb923c; background:#fb923c;"></span>
+                            <span class="tp-icon">⚛️</span> React DevTools
+                        </div>
+                        <div class="tool-pill" style="--tpe-color: #0ea5e9;">
+                            <span class="tp-dot" style="color:#0ea5e9; background:#0ea5e9;"></span>
+                            <span class="tp-icon">📮</span> Postman
+                        </div>
+                        <div class="tool-pill" style="--tpe-color: #0f766e;">
+                            <span class="tp-dot" style="color:#0f766e; background:#0f766e;"></span>
+                            <span class="tp-icon">🧩</span> Postman API
+                        </div>
+                        <div class="tool-pill" style="--tpe-color: #f97316;">
+                            <span class="tp-dot" style="color:#f97316; background:#f97316;"></span>
+                            <span class="tp-icon">📦</span> npm
+                        </div>
+                        <div class="tool-pill" style="--tpe-color: #0f766e;">
+                            <span class="tp-dot" style="color:#0f766e; background:#0f766e;"></span>
+                            <span class="tp-icon">🧶</span> Yarn
+                        </div>
+                        <div class="tool-pill" style="--tpe-color: #a78bfa;">
+                            <span class="tp-dot" style="color:#a78bfa; background:#a78bfa;"></span>
+                            <span class="tp-icon">🎨</span> Figma
+                        </div>
+                        <div class="tool-pill" style="--tpe-color: #60a5fa;">
+                            <span class="tp-dot" style="color:#60a5fa; background:#60a5fa;"></span>
+                            <span class="tp-icon">▲</span> Vercel
+                        </div>
+                        <div class="tool-pill" style="--tpe-color: #34d399;">
+                            <span class="tp-dot" style="color:#34d399; background:#34d399;"></span>
+                            <span class="tp-icon">🌐</span> Netlify
+                        </div>
+                        <div class="tool-pill" style="--tpe-color: #60a5fa;">
+                            <span class="tp-dot" style="color:#60a5fa; background:#60a5fa;"></span>
+                            <span class="tp-icon">▲</span> Render
+                        </div>
+                    </div>
+                </div>
+
+                <!-- ──────────────────────────────────────────────
+                     11 / 11 · PROFESSIONAL SKILLS
+                     ────────────────────────────────────────────── -->
+                <div class="cat-block" data-category="professional">
+                    <div class="cat-header">
+                        <div class="cat-icon ci-purple">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#a78bfa" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l7 4-7 4-7-4 7-4z"/><path d="M5 11l7 4 7-4"/><path d="M5 17l7 4 7-4"/></svg>
+                        </div>
+                        <div class="cat-info">
+                            <div class="cat-num">11 / 11</div>
+                            <div class="cat-name">Professional Skills</div>
+                            <div class="cat-desc">// Communication · Public speaking · Team collaboration · Research · Adaptability</div>
+                        </div>
+                        <div class="cat-badge">11 skills</div>
+                    </div>
+
+                    <div class="skill-cards">
+                        <!-- Problem Solving -->
+                        <div class="sk-card theme-purple" data-pct="93"
+                             style="--sk-grad: linear-gradient(90deg,#7c3aed,#a78bfa); --sk-color:#a78bfa; --sk-bg:rgba(124,58,237,0.08); --sk-glow:rgba(124,58,237,0.05);">
+                            <div class="skc-icon-wrap" style="background:rgba(124,58,237,0.1);">🧠</div>
+                            <div class="skc-name">Problem Solving</div>
+                            <div class="skc-sub">Strategy · Root cause · Decision making · Fast resolution</div>
+                            <div class="skc-meta">
+                                <span class="skc-level" style="color:#a78bfa;">Expert</span>
+                                <span class="skc-pct">93%</span>
+                            </div>
+                            <div class="skc-track"><div class="skc-fill"></div></div>
+                        </div>
+
+                        <!-- Communication -->
+                        <div class="sk-card theme-purple" data-pct="91"
+                             style="--sk-grad: linear-gradient(90deg,#7c3aed,#a78bfa); --sk-color:#a78bfa; --sk-bg:rgba(124,58,237,0.08); --sk-glow:rgba(124,58,237,0.05);">
+                            <div class="skc-icon-wrap" style="background:rgba(124,58,237,0.1);">🗨️</div>
+                            <div class="skc-name">Communication</div>
+                            <div class="skc-sub">Clear writing · Listening · Feedback · Stakeholder alignment</div>
+                            <div class="skc-meta">
+                                <span class="skc-level" style="color:#a78bfa;">Expert</span>
+                                <span class="skc-pct">91%</span>
+                            </div>
+                            <div class="skc-track"><div class="skc-fill"></div></div>
+                        </div>
+
+                        <!-- Public Speaking -->
+                        <div class="sk-card theme-purple" data-pct="86"
+                             style="--sk-grad: linear-gradient(90deg,#7c3aed,#a78bfa); --sk-color:#a78bfa; --sk-bg:rgba(124,58,237,0.08); --sk-glow:rgba(124,58,237,0.05);">
+                            <div class="skc-icon-wrap" style="background:rgba(124,58,237,0.1);">🎤</div>
+                            <div class="skc-name">Public Speaking</div>
+                            <div class="skc-sub">Talks · Demos · Presentation confidence · Audience engagement</div>
+                            <div class="skc-meta">
+                                <span class="skc-level" style="color:#a78bfa;">Advanced</span>
+                                <span class="skc-pct">86%</span>
+                            </div>
+                            <div class="skc-track"><div class="skc-fill"></div></div>
+                        </div>
+
+                        <!-- Quick Learning -->
+                        <div class="sk-card theme-purple" data-pct="88"
+                             style="--sk-grad: linear-gradient(90deg,#7c3aed,#a78bfa); --sk-color:#a78bfa; --sk-bg:rgba(124,58,237,0.08); --sk-glow:rgba(124,58,237,0.05);">
+                            <div class="skc-icon-wrap" style="background:rgba(124,58,237,0.1);">⚡</div>
+                            <div class="skc-name">Quick Learning</div>
+                            <div class="skc-sub">New tools · Fast onboarding · Iterative growth · Curiosity</div>
+                            <div class="skc-meta">
+                                <span class="skc-level" style="color:#a78bfa;">Expert</span>
+                                <span class="skc-pct">88%</span>
+                            </div>
+                            <div class="skc-track"><div class="skc-fill"></div></div>
+                        </div>
+
+                        <!-- Research Skills -->
+                        <div class="sk-card theme-purple" data-pct="85"
+                             style="--sk-grad: linear-gradient(90deg,#7c3aed,#a78bfa); --sk-color:#a78bfa; --sk-bg:rgba(124,58,237,0.08); --sk-glow:rgba(124,58,237,0.05);">
+                            <div class="skc-icon-wrap" style="background:rgba(124,58,237,0.1);">🔎</div>
+                            <div class="skc-name">Research Skills</div>
+                            <div class="skc-sub">Analysis · Validation · Trends · Proof of concept</div>
+                            <div class="skc-meta">
+                                <span class="skc-level" style="color:#a78bfa;">Advanced</span>
+                                <span class="skc-pct">85%</span>
+                            </div>
+                            <div class="skc-track"><div class="skc-fill"></div></div>
+                        </div>
+
+                        <!-- Debugging -->
+                        <div class="sk-card theme-purple" data-pct="90"
+                             style="--sk-grad: linear-gradient(90deg,#7c3aed,#a78bfa); --sk-color:#a78bfa; --sk-bg:rgba(124,58,237,0.08); --sk-glow:rgba(124,58,237,0.05);">
+                            <div class="skc-icon-wrap" style="background:rgba(124,58,237,0.1);">🐛</div>
+                            <div class="skc-name">Debugging</div>
+                            <div class="skc-sub">Diagnosis · Root cause · Fixes · Error tracking</div>
+                            <div class="skc-meta">
+                                <span class="skc-level" style="color:#a78bfa;">Expert</span>
+                                <span class="skc-pct">90%</span>
+                            </div>
+                            <div class="skc-track"><div class="skc-fill"></div></div>
+                        </div>
+
+                        <!-- Team Collaboration -->
+                        <div class="sk-card theme-purple" data-pct="89"
+                             style="--sk-grad: linear-gradient(90deg,#7c3aed,#a78bfa); --sk-color:#a78bfa; --sk-bg:rgba(124,58,237,0.08); --sk-glow:rgba(124,58,237,0.05);">
+                            <div class="skc-icon-wrap" style="background:rgba(124,58,237,0.1);">🤝</div>
+                            <div class="skc-name">Team Collaboration</div>
+                            <div class="skc-sub">Cross-functional · Alignment · Shared delivery · Support</div>
+                            <div class="skc-meta">
+                                <span class="skc-level" style="color:#a78bfa;">Expert</span>
+                                <span class="skc-pct">89%</span>
+                            </div>
+                            <div class="skc-track"><div class="skc-fill"></div></div>
+                        </div>
+
+                        <!-- Team Facilitation -->
+                        <div class="sk-card theme-purple" data-pct="84"
+                             style="--sk-grad: linear-gradient(90deg,#7c3aed,#a78bfa); --sk-color:#a78bfa; --sk-bg:rgba(124,58,237,0.08); --sk-glow:rgba(124,58,237,0.05);">
+                            <div class="skc-icon-wrap" style="background:rgba(124,58,237,0.1);">🧭</div>
+                            <div class="skc-name">Team Facilitation</div>
+                            <div class="skc-sub">Workshops · Meetings · Consensus · Coaching</div>
+                            <div class="skc-meta">
+                                <span class="skc-level" style="color:#a78bfa;">Advanced</span>
+                                <span class="skc-pct">84%</span>
+                            </div>
+                            <div class="skc-track"><div class="skc-fill"></div></div>
+                        </div>
+
+                        <!-- Analytical Thinking -->
+                        <div class="sk-card theme-purple" data-pct="87"
+                             style="--sk-grad: linear-gradient(90deg,#7c3aed,#a78bfa); --sk-color:#a78bfa; --sk-bg:rgba(124,58,237,0.08); --sk-glow:rgba(124,58,237,0.05);">
+                            <div class="skc-icon-wrap" style="background:rgba(124,58,237,0.1);">📊</div>
+                            <div class="skc-name">Analytical Thinking</div>
+                            <div class="skc-sub">Data-driven · Patterns · Evaluation · Trade-offs</div>
+                            <div class="skc-meta">
+                                <span class="skc-level" style="color:#a78bfa;">Expert</span>
+                                <span class="skc-pct">87%</span>
+                            </div>
+                            <div class="skc-track"><div class="skc-fill"></div></div>
+                        </div>
+
+                        <!-- Adaptability -->
+                        <div class="sk-card theme-purple" data-pct="88"
+                             style="--sk-grad: linear-gradient(90deg,#7c3aed,#a78bfa); --sk-color:#a78bfa; --sk-bg:rgba(124,58,237,0.08); --sk-glow:rgba(124,58,237,0.05);">
+                            <div class="skc-icon-wrap" style="background:rgba(124,58,237,0.1);">🌿</div>
+                            <div class="skc-name">Adaptability</div>
+                            <div class="skc-sub">Change readiness · Resilience · Context switching · Growth</div>
+                            <div class="skc-meta">
+                                <span class="skc-level" style="color:#a78bfa;">Expert</span>
+                                <span class="skc-pct">88%</span>
+                            </div>
+                            <div class="skc-track"><div class="skc-fill"></div></div>
+                        </div>
+
+                        <!-- Portfolio Management -->
+                        <div class="sk-card theme-purple" data-pct="82"
+                             style="--sk-grad: linear-gradient(90deg,#7c3aed,#a78bfa); --sk-color:#a78bfa; --sk-bg:rgba(124,58,237,0.08); --sk-glow:rgba(124,58,237,0.05);">
+                            <div class="skc-icon-wrap" style="background:rgba(124,58,237,0.1);">📁</div>
+                            <div class="skc-name">Portfolio Management</div>
+                            <div class="skc-sub">Project curation · Case stories · Prioritization · Updates</div>
+                            <div class="skc-meta">
+                                <span class="skc-level" style="color:#a78bfa;">Advanced</span>
+                                <span class="skc-pct">82%</span>
+                            </div>
+                            <div class="skc-track"><div class="skc-fill"></div></div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- ──────────────────────────────────────────────
+                     OVERALL PROFICIENCY SUMMARY
+                     ────────────────────────────────────────────── -->
+                <div class="summary-banner" id="summaryBanner">
+                    <div class="sb-top">
+                        <div>
+                            <div class="sb-title">Overall Proficiency Summary</div>
+                            <div class="sb-sub">// expertise depth across all five domains — continuously growing</div>
+                        </div>
+                        <div class="sb-chip">Frontend-First Developer</div>
+                    </div>
+
+                    <div class="domain-bars">
+                        <div class="db-row">
+                            <div class="db-label">Frontend Development</div>
+                            <div class="db-track">
+                                <div class="db-fill" data-width="90" style="background: linear-gradient(90deg,#3b82f6,#60a5fa);"></div>
+                            </div>
+                            <div class="db-pct">90%</div>
+                        </div>
+                        <div class="db-row">
+                            <div class="db-label">Backend Development</div>
+                            <div class="db-track">
+                                <div class="db-fill" data-width="88" style="background: linear-gradient(90deg,#10b981,#34d399);"></div>
+                            </div>
+                            <div class="db-pct">88%</div>
+                        </div>
+                        <div class="db-row">
+                            <div class="db-label">Database</div>
+                            <div class="db-track">
+                                <div class="db-fill" data-width="86" style="background: linear-gradient(90deg,#22c55e,#4ade80);"></div>
+                            </div>
+                            <div class="db-pct">86%</div>
+                        </div>
+                        <div class="db-row">
+                            <div class="db-label">Programming</div>
+                            <div class="db-track">
+                                <div class="db-fill" data-width="89" style="background: linear-gradient(90deg,#7c3aed,#a78bfa);"></div>
+                            </div>
+                            <div class="db-pct">89%</div>
+                        </div>
+                        <div class="db-row">
+                            <div class="db-label">Software Engineering</div>
+                            <div class="db-track">
+                                <div class="db-fill" data-width="91" style="background: linear-gradient(90deg,#16a34a,#4ade80);"></div>
+                            </div>
+                            <div class="db-pct">91%</div>
+                        </div>
+                        <div class="db-row">
+                            <div class="db-label">Artificial Intelligence</div>
+                            <div class="db-track">
+                                <div class="db-fill" data-width="84" style="background: linear-gradient(90deg,#7c3aed,#a78bfa);"></div>
+                            </div>
+                            <div class="db-pct">90%</div>
+                        </div>
+                        <div class="db-row">
+                            <div class="db-label">Developer Tools</div>
+                            <div class="db-track">
+                                <div class="db-fill" data-width="92" style="background: linear-gradient(90deg,#0891b2,#22d3ee);"></div>
+                            </div>
+                            <div class="db-pct">92%</div>
+                        </div>
+                        <div class="db-row">
+                            <div class="db-label">Professional Skills</div>
+                            <div class="db-track">
+                                <div class="db-fill" data-width="90" style="background: linear-gradient(90deg,#7c3aed,#a78bfa);"></div>
+                            </div>
+                            <div class="db-pct">90%</div>
+                        </div>
+                        <div class="db-row">
+                            <div class="db-label">Cloud</div>
+                            <div class="db-track">
+                                <div class="db-fill" data-width="82" style="background: linear-gradient(90deg,#3b82f6,#60a5fa);"></div>
+                            </div>
+                            <div class="db-pct">82%</div>
+                        </div>
+                    </div>
+                </div>
+
+            </div><!-- /container -->
+        </section>
+
+        <!-- ═══ FOOTER ══════════════════════════════════════════════ -->
+        <footer class="site-footer">
+            <p>deepak<span style="color:var(--blue)">.</span>s &mdash; built with precision &nbsp;|&nbsp; <a href="mailto:deepak1006.dev@gmail.com">deepak1006.dev@gmail.com</a></p>
+        </footer>
+
+    </div><!-- /page-wrapper -->
+
+    <script src="nav.js"></script>
+    <script src="assets/js/biodata.js"></script>
+    <script>
+    (function () {
+        'use strict';
+
+        /* ── 1. Animated stat counters ──────────────────────────── */
+        const counters = document.querySelectorAll('.sb-num[data-count]');
+        const counterObs = new IntersectionObserver(function (entries) {
+            entries.forEach(function (entry) {
+                if (!entry.isIntersecting) return;
+                var el = entry.target;
+                var target = parseInt(el.dataset.count, 10);
+                var duration = 1100;
+                var startTime = null;
+                function tick(now) {
+                    if (!startTime) startTime = now;
+                    var progress = Math.min((now - startTime) / duration, 1);
+                    var eased = 1 - Math.pow(1 - progress, 3); // ease-out cubic
+                    el.textContent = Math.floor(eased * target);
+                    if (progress < 1) requestAnimationFrame(tick);
+                    else el.textContent = target;
+                }
+                requestAnimationFrame(tick);
+                counterObs.unobserve(el);
+            });
+        }, { threshold: 0.6 });
+        counters.forEach(function (c) { counterObs.observe(c); });
+
+        /* ── 2. Category block + card stagger reveal ────────────── */
+        var catBlocks = document.querySelectorAll('.cat-block[data-category]');
+        var catObs = new IntersectionObserver(function (entries) {
+            entries.forEach(function (entry) {
+                if (!entry.isIntersecting) return;
+                var block = entry.target;
+                block.classList.add('reveal');
+
+                // Stagger-reveal skill cards
+                var cards = block.querySelectorAll('.sk-card');
+                cards.forEach(function (card, i) {
+                    setTimeout(function () {
+                        card.classList.add('card-show');
+                        // Trigger bar fill after card appears
+                        setTimeout(function () {
+                            var fill = card.querySelector('.skc-fill');
+                            if (fill) {
+                                var pct = card.dataset.pct || '0';
+                                fill.style.width = pct + '%';
+                            }
+                        }, 200);
+                    }, i * 90);
+                });
+
+                // Stagger-reveal tool pills
+                var pills = block.querySelectorAll('.tool-pill');
+                pills.forEach(function (pill, i) {
+                    setTimeout(function () {
+                        pill.classList.add('pill-show');
+                    }, i * 70);
+                });
+
+                catObs.unobserve(block);
+            });
+        }, { threshold: 0.08, rootMargin: '0px 0px -40px 0px' });
+        catBlocks.forEach(function (b) { catObs.observe(b); });
+
+        /* ── 3. Summary banner bars ─────────────────────────────── */
+        var summaryBanner = document.getElementById('summaryBanner');
+        if (summaryBanner) {
+            var summaryObs = new IntersectionObserver(function (entries) {
+                entries.forEach(function (entry) {
+                    if (!entry.isIntersecting) return;
+                    summaryBanner.classList.add('reveal');
+                    summaryBanner.querySelectorAll('.db-fill').forEach(function (fill, i) {
+                        setTimeout(function () {
+                            fill.style.width = fill.dataset.width + '%';
+                        }, i * 160);
+                    });
+                    summaryObs.unobserve(summaryBanner);
+                });
+            }, { threshold: 0.25 });
+            summaryObs.observe(summaryBanner);
+        }
+
+        /* ── 4. Filter tabs ─────────────────────────────────────── */
+        var ftabs = document.querySelectorAll('.ftab');
+        ftabs.forEach(function (tab) {
+            tab.addEventListener('click', function () {
+                ftabs.forEach(function (t) { t.classList.remove('active'); });
+                tab.classList.add('active');
+                var filter = tab.dataset.filter;
+                catBlocks.forEach(function (block) {
+                    var cat = block.dataset.category;
+                    if (filter === 'all' || cat === filter) {
+                        block.style.display = '';
+                        block.style.removeProperty('display');
+                    } else {
+                        block.style.display = 'none';
+                    }
+                });
+                // Scroll to skills body on mobile after filter
+                if (window.innerWidth < 768) {
+                    document.querySelector('.skills-body').scrollIntoView({ behavior: 'smooth', block: 'start' });
+                }
+            });
+        });
+
+        /* ── 5. Smooth hover effect: hook badges ────────────────── */
+        document.querySelectorAll('.hook-badge').forEach(function (badge) {
+            badge.addEventListener('mouseenter', function () {
+                this.style.boxShadow = '0 0 18px rgba(59,130,246,0.25)';
+            });
+            badge.addEventListener('mouseleave', function () {
+                this.style.boxShadow = '';
+            });
+        });
+
+    })();
+    </script>
+</body>
+</html>

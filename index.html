@@ -1,0 +1,500 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Deepak S — Full Stack & AI/ML Developer</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        /* ── Hero ─────────────────────────────────────────── */
+        .hero {
+            min-height: calc(100vh - var(--nav-h));
+            display: grid;
+            grid-template-columns: minmax(0, 1fr) minmax(360px, 430px);
+            align-items: center;
+            gap: 64px;
+            padding: 90px 0 70px;
+        }
+
+        .hero-left { max-width: 680px; }
+
+        .hero-greeting {
+            font-family: var(--font-mono);
+            font-size: 0.78rem;
+            color: var(--blue);
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            margin-bottom: 18px;
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .hero-greeting::before {
+            content: '';
+            display: inline-block;
+            width: 26px; height: 1px;
+            background: var(--blue);
+        }
+
+        .hero-name {
+            font-family: var(--font-display);
+            font-size: clamp(3rem, 5vw, 4.6rem);
+            font-weight: 800;
+            color: var(--text);
+            line-height: 0.95;
+            letter-spacing: -2px;
+            margin-bottom: 14px;
+            max-width: 90%;
+        }
+        .hero-name .highlight {
+            background: linear-gradient(135deg, var(--blue-light), var(--orange));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .hero-role {
+            font-family: var(--font-display);
+            font-size: 1.38rem;
+            font-weight: 600;
+            color: var(--text-muted);
+            margin-bottom: 42px;
+            min-height: 2.2rem;
+        }
+        .cursor {
+            display: inline-block;
+            width: 2px; height: 1.2em;
+            background: var(--blue);
+            margin-left: 3px;
+            vertical-align: middle;
+            animation: blink 1s step-end infinite;
+        }
+
+        .hero-bio {
+            font-size: 1.05rem;
+            color: var(--text-muted);
+            line-height: 1.8;
+            max-width: 650px;
+            margin-bottom: 40px;
+        }
+
+        .hero-actions {
+            display: flex;
+            gap: 14px;
+            flex-wrap: wrap;
+        }
+
+        .hero-visual {
+            display: flex;
+            justify-content: flex-end;
+            align-items: center;
+            position: relative;
+        }
+
+        .hero-card {
+            background: rgba(255,255,255,0.04);
+            border: 1px solid rgba(255,255,255,0.08);
+            border-radius: var(--radius-lg);
+            padding: 36px;
+            width: 100%;
+            max-width: 380px;
+            box-shadow: 0 32px 90px rgba(0,0,0,0.2);
+            position: relative;
+            overflow: hidden;
+            backdrop-filter: blur(20px);
+            transition: transform 280ms cubic-bezier(.2,.9,.2,1), box-shadow 280ms ease, border-color 280ms ease;
+            will-change: transform, box-shadow;
+        }
+        .hero-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 36px 100px rgba(0,0,0,0.24);
+            border-color: rgba(96,165,250,0.16);
+        }
+        .hero-card::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, var(--blue), var(--orange));
+        }
+
+        .hero-photo {
+            width: 127px; height: 127px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 3px solid rgba(255,255,255,0.12);
+            margin-bottom: 18px;
+            box-shadow: 0 0 0 6px rgba(59,130,246,0.08);
+        }
+
+        .hc-name {
+            font-family: var(--font-display);
+            font-size: 1.25rem;
+            font-weight: 800;
+            margin-bottom: 6px;
+            color: var(--text);
+        }
+        .hc-role {
+            font-size: 0.88rem;
+            color: var(--text-muted);
+            font-family: var(--font-mono);
+            margin-bottom: 24px;
+        }
+
+        .hc-stat-row {
+            display: grid;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: 14px;
+            margin-bottom: 24px;
+        }
+        .hc-stat {
+            background: rgba(255,255,255,0.03);
+            border: 1px solid rgba(255,255,255,0.08);
+            border-radius: 16px;
+            padding: 16px;
+            text-align: center;
+            box-shadow: inset 0 0 0 1px rgba(255,255,255,0.02);
+        }
+        .hc-stat-num {
+            font-family: var(--font-display);
+            font-size: 1.7rem;
+            font-weight: 800;
+            color: var(--blue-light);
+        }
+        .hc-stat-label {
+            font-size: 0.72rem;
+            color: var(--text-dim);
+            font-family: var(--font-mono);
+            letter-spacing: 0.5px;
+            margin-top: 4px;
+        }
+
+        .hc-status {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 0.85rem;
+            color: var(--text);
+            font-family: var(--font-mono);
+            padding: 14px 16px;
+            background: rgba(16,185,129,0.12);
+            border: 1px solid rgba(16,185,129,0.22);
+            border-radius: 14px;
+        }
+        .hc-dot {
+            width: 10px; height: 10px;
+            border-radius: 50%;
+            background: var(--green);
+            box-shadow: 0 0 10px rgba(16,185,129,0.75);
+            flex-shrink: 0;
+            animation: blink 2s ease infinite;
+        }
+
+        .blob1 {
+            position: absolute;
+            top: -90px; right: -110px;
+            width: 340px; height: 340px;
+            border-radius: 50%;
+            background: radial-gradient(circle, rgba(59,130,246,0.10) 0%, transparent 70%);
+            pointer-events: none;
+        }
+        .blob2 {
+            position: absolute;
+            bottom: -80px; left: -110px;
+            width: 280px; height: 280px;
+            border-radius: 50%;
+            background: radial-gradient(circle, rgba(249,115,22,0.068) 0%, transparent 70%);
+            pointer-events: none;
+        }
+
+        .featured {
+            padding: 80px 0 20px;
+            border-top: 1px solid rgba(255,255,255,0.08);
+        }
+
+        .featured-grid {
+            display: grid;
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+            gap: 24px;
+        }
+
+        .feat-card {
+            background: rgba(255,255,255,0.04);
+            border: 1px solid rgba(255,255,255,0.08);
+            border-radius: 24px;
+            padding: 30px;
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+            transition: border-color 0.25s, transform 0.25s, box-shadow 0.25s;
+            box-shadow: 0 18px 55px rgba(0,0,0,0.18);
+            backdrop-filter: blur(16px);
+        }
+        .feat-card:hover {
+            border-color: rgba(59,130,246,0.35);
+            transform: translateY(-6px);
+            box-shadow: 0 28px 88px rgba(0,0,0,0.24);
+        }
+
+        .feat-icon {
+            width: 52px; height: 52px;
+            border-radius: 18px;
+            display: flex; align-items: center; justify-content: center;
+            font-size: 1.3rem;
+            margin-bottom: 8px;
+        }
+        .feat-icon.blue   { background: rgba(59,130,246,0.16); }
+        .feat-icon.orange { background: rgba(249,115,22,0.14); }
+        .feat-icon.green  { background: rgba(16,185,129,0.14); }
+
+        .feat-title {
+            font-family: var(--font-display);
+            font-size: 1.12rem;
+            font-weight: 800;
+            color: var(--text);
+        }
+        .feat-desc {
+            font-size: 0.9rem;
+            color: var(--text-muted);
+            line-height: 1.65;
+            flex-grow: 1;
+        }
+        .feat-link {
+            font-size: 0.87rem;
+            font-weight: 700;
+            color: var(--blue-light);
+            font-family: var(--font-mono);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            transition: gap 0.2s, color 0.2s;
+        }
+        .feat-link:hover { gap: 12px; }
+
+        @media (max-width: 1024px) {
+            .hero { gap: 42px; }
+            .hero-left { max-width: 620px; }
+            .hero-card { max-width: 360px; }
+        }
+
+        @media (max-width: 900px) {
+            .hero {
+                grid-template-columns: 1fr;
+                padding: 56px 0 48px;
+                gap: 48px;
+                text-align: center;
+            }
+            .hero-name { font-size: 3rem; letter-spacing: -1px; }
+            .hero-visual { justify-content: center; }
+            .hero-actions { justify-content: center; }
+            .hero-greeting { justify-content: center; }
+            .hero-bio { margin: 0 auto 36px; }
+            .featured-grid { grid-template-columns: 1fr; }
+        }
+
+        @media (max-width: 480px) {
+            .hero { padding: 48px 0 40px; }
+            .hero-name { font-size: 2.4rem; }
+            .hc-stat-num { font-size: 1.3rem; }
+            .hero-card { padding: 28px; }
+            .hero-photo { width: 112px; height: 112px; }
+        }
+    </style>
+</head>
+<body>
+    <!-- ═══ HEADER / NAV ═══════════════════════════════════ -->
+    <header class="site-header">
+        <div class="nav-inner">
+            <a href="index.html" class="logo">DEEPAK<span class="dot">.</span>S</a>
+            <nav class="nav-links" aria-label="Main navigation">
+                <a href="index.html"    class="nav-link" data-page="index">Home</a>
+                <a href="about.html"    class="nav-link" data-page="about">About</a>
+                <a href="projects.html" class="nav-link" data-page="projects">Projects</a>
+                <a href="skills.html"   class="nav-link" data-page="skills">Skills</a>
+                <a href="certifications.html" class="nav-link" data-page="certifications">Certifications</a>
+                <a href="contact.html"  class="nav-link nav-cta" data-page="contact">Hire Me</a>
+            </nav>
+            <button class="hamburger" id="hamburger" aria-label="Toggle menu">
+                <span></span><span></span><span></span>
+            </button>
+        </div>
+        <nav class="mobile-menu" id="mobileMenu" aria-label="Mobile navigation">
+            <a href="index.html"    class="mobile-nav-link" data-page="index">Home</a>
+            <a href="about.html"    class="mobile-nav-link" data-page="about">About</a>
+            <a href="projects.html" class="mobile-nav-link" data-page="projects">Projects</a>
+            <a href="skills.html"   class="mobile-nav-link" data-page="skills">Skills</a>
+            <a href="certifications.html" class="mobile-nav-link" data-page="certifications">Certifications</a>
+            <a href="contact.html"  class="mobile-nav-link" data-page="contact">Contact / Hire Me</a>
+        </nav>
+    </header>
+
+    <!-- ═══ MAIN ════════════════════════════════════════════ -->
+    <div class="page-wrapper">
+        <main>
+            <div class="bg-particles" aria-hidden="true"></div>
+            <section class="container">
+                <div class="hero">
+                    <!-- Left: Text -->
+                    <div class="hero-left">
+                        <div class="hero-greeting anim-1">Hello, I'm</div>
+                        <h1 class="hero-name anim-2">
+                            DEEPAK<br><span class="highlight"></span>
+                        </h1>
+                        <div class="hero-role anim-3">
+                            <span id="roleText"></span><span class="cursor"></span>
+                        </div>
+                        <p class="hero-bio anim-4">
+                            Software Engineering enthusiast with hands-on experience building scalable MERN applications and AI-powered web solutions. Through internships and 12+ hands-on projects, I've gained practical experience building scalable web applications using React.js, Node.js, Express.js, MongoDB, JavaScript, TypeScript, REST APIs, and AI integrations. I'm currently seeking Software Engineering Internship and Software Engineer (Fresher) opportunities.
+                        </p>
+                        <div class="hero-actions anim-5">
+                            <a href="projects.html" class="btn btn-primary btn-lg" aria-label="View projects">View Projects</a>
+                            <a href="about.html" class="btn btn-secondary btn-lg" aria-label="Learn more about me">About Me</a>
+                            <a href="public/Deepak_S Resume.pdf" class="btn btn-green btn-lg" download aria-label="Download resume">Download Resume</a>
+                            <a href="https://github.com/Deepak-1006S" class="btn btn-github btn-lg" target="_blank" rel="noreferrer noopener" aria-label="Open GitHub profile">
+                                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                                    <path d="M12 2C6.48 2 2 6.48 2 12c0 4.42 2.87 8.17 6.84 9.49.5.09.66-.22.66-.48 0-.24-.01-.87-.01-1.71-2.78.6-3.37-1.34-3.37-1.34-.45-1.14-1.1-1.44-1.1-1.44-.9-.62.07-.61.07-.61 1 .07 1.53 1.03 1.53 1.03.89 1.52 2.34 1.08 2.91.83.09-.64.35-1.08.63-1.33-2.22-.25-4.56-1.11-4.56-4.95 0-1.09.39-1.99 1.03-2.69-.1-.25-.45-1.27.1-2.65 0 0 .84-.27 2.75 1.02A9.56 9.56 0 0 1 12 6.8c.85.004 1.7.11 2.5.32 1.9-1.29 2.74-1.02 2.74-1.02.55 1.38.2 2.4.1 2.65.64.7 1.03 1.6 1.03 2.69 0 3.86-2.34 4.7-4.57 4.95.36.31.68.92.68 1.86 0 1.34-.01 2.42-.01 2.75 0 .27.16.58.67.48A10.02 10.02 0 0 0 22 12c0-5.52-4.48-10-10-10Z"/>
+                                </svg>
+                                GitHub
+                            </a>
+                            <a href="https://www.linkedin.com/in/deepak-s1006/"
+   class="btn btn-linkedin btn-lg"
+   target="_blank"
+   rel="noopener noreferrer"
+   aria-label="Open LinkedIn profile">
+
+    <svg xmlns="http://www.w3.org/2000/svg"
+         width="18"
+         height="18"
+         fill="currentColor"
+         viewBox="0 0 24 24">
+        <path d="M4.98 3.5A2.48 2.48 0 1 1 .02 3.5a2.48 2.48 0 0 1 4.96 0zM.5 8h5v15h-5zm7.5 0h4.8v2.1h.1c.7-1.3 2.4-2.6 4.9-2.6 5.2 0 6.2 3.4 6.2 7.8V23h-5v-6.8c0-1.6 0-3.8-2.3-3.8s-2.7 1.8-2.7 3.7V23H8z"/>
+    </svg>
+
+    LinkedIn
+</a>
+                        </div>
+                    </div>
+
+                    <!-- Right: Profile card -->
+                    <div class="hero-visual anim-6">
+                        <div class="blob1"></div>
+                        <div class="blob2"></div>
+                        <div class="hero-card">
+                            <img src="assets/photo.jpg" alt="Deepak S" class="hero-photo">
+                            <div class="hc-name">Deepak S</div>
+                            <div class="hc-role">// Software Engineer • MERN Developer</div>
+                            <div class="hc-stat-row">
+                                <div class="hc-stat">
+                                    <div class="hc-stat-num">12+</div>
+                                    <div class="hc-stat-label">Projects</div>
+                                </div>
+                                <div class="hc-stat">
+                                    <div class="hc-stat-num">3</div>
+                                    <div class="hc-stat-label">Internships</div>
+                                </div>
+                                <div class="hc-stat">
+                                    <div class="hc-stat-num">12+</div>
+                                    <div class="hc-stat-label">Certifications</div>
+                                </div>
+                                <div class="hc-stat">
+                                    <div class="hc-stat-num">82+</div>
+                                    <div class="hc-stat-label">Technical Skills</div>
+                                </div>
+                            </div>
+                            <div class="hc-status">
+                                <div class="hc-dot"></div>
+                                Open to opportunities
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Featured sections strip -->
+            <section class="featured">
+                <div class="container">
+                    <span class="label">What I Do</span>
+                    <h2 class="heading">Building across the <em>full stack</em></h2>
+                    <div class="divider"></div>
+
+                    <div class="featured-grid">
+                        <div class="feat-card anim-1">
+                            <div class="feat-icon blue">
+                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#60a5fa" stroke-width="2"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/></svg>
+                            </div>
+                            <div class="feat-title">Full Stack Development</div>
+                            <div class="feat-desc">Building scalable web applications with React.js, Node.js, Express.js, and MongoDB — deployed on Vercel, Render, and Netlify.</div>
+                            <a href="projects.html" class="feat-link">View Projects →</a>
+                        </div>
+
+                        <div class="feat-card anim-2">
+                            <div class="feat-icon orange">
+                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#fb923c" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M12 1v4M12 19v4M4.22 4.22l2.83 2.83M16.95 16.95l2.83 2.83M1 12h4M19 12h4M4.22 19.78l2.83-2.83M16.95 7.05l2.83-2.83"/></svg>
+                            </div>
+                            <div class="feat-title">AI Integration</div>
+                            <div class="feat-desc">Integrating AI-powered features using Gemini API, building intelligent chatbots, and applying machine learning concepts in web applications.</div>
+                            <a href="skills.html" class="feat-link">View Skills →</a>
+                        </div>
+
+                        <div class="feat-card anim-3">
+                            <div class="feat-icon green">
+                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#34d399" stroke-width="2"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg>
+                            </div>
+                            <div class="feat-title">Cloud Deployment</div>
+                            <div class="feat-desc">All 12+ projects deployed and live on Vercel, Render, and Netlify with MongoDB Atlas cloud database integration.</div>
+                            <a href="contact.html" class="feat-link">Get In Touch →</a>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </main>
+
+        <footer class="site-footer">
+            <p>deepak<span style="color:var(--blue)">.</span>s &mdash; built with precision &nbsp;|&nbsp; <a href="mailto:deepak1006.dev@gmail.com">deepak1006.dev@gmail.com</a></p>
+        </footer>
+    </div>
+
+    <script src="nav.js"></script>
+    <script src="assets/js/biodata.js"></script>
+    <script src="assets/js/ui.js" defer></script>
+    <script>
+        // Typewriter effect
+        const roles = [
+            'Full Stack Developer',
+            'MERN Stack Developer',
+            'Software Engineer',
+            'React Developer',
+            'AI Application Developer'
+        ];
+        let ri = 0, ci = 0, deleting = false;
+        const el = document.getElementById('roleText');
+        const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+        if (prefersReducedMotion) {
+            el.textContent = roles[0];
+        } else {
+            function typeLoop() {
+            const word = roles[ri];
+            if (!deleting) {
+                el.textContent = word.slice(0, ci + 1);
+                ci++;
+                if (ci === word.length) {
+                    deleting = true;
+                    setTimeout(typeLoop, 1800);
+                    return;
+                }
+            } else {
+                el.textContent = word.slice(0, ci - 1);
+                ci--;
+                if (ci === 0) {
+                    deleting = false;
+                    ri = (ri + 1) % roles.length;
+                }
+            }
+            setTimeout(typeLoop, deleting ? 60 : 90);
+            }
+            typeLoop();
+        }
+    </script>
+</body>
+</html>

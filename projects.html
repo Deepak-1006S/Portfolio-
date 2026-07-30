@@ -1,0 +1,472 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Projects — Deepak S</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        /* ── Filter bar ───────────────────────────────────── */
+        .filter-bar {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+            margin-bottom: 40px;
+        }
+
+        .filter-btn {
+            background: rgba(255,255,255,0.04);
+            border: 1px solid rgba(255,255,255,0.12);
+            color: var(--text-muted);
+            padding: 11px 22px;
+            border-radius: 999px;
+            cursor: pointer;
+            font-size: 0.9rem;
+            font-weight: 700;
+            font-family: var(--font-body);
+            transition: all 0.25s ease;
+            letter-spacing: 0.25px;
+            box-shadow: 0 14px 26px rgba(0,0,0,0.12);
+        }
+        .filter-btn:hover {
+            border-color: rgba(59,130,246,0.35);
+            color: var(--text);
+            background: rgba(59,130,246,0.08);
+        }
+        .filter-btn.active {
+            background: linear-gradient(135deg, var(--blue), var(--blue-light));
+            color: #fff;
+            border-color: transparent;
+            box-shadow: 0 18px 36px rgba(59,130,246,0.28);
+        }
+
+        /* ── Projects grid ───────────────────────────────── */
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: 28px;
+        }
+
+        .project-card {
+            background: rgba(255,255,255,0.04);
+            border: 1px solid rgba(255,255,255,0.1);
+            border-radius: 28px;
+            padding: 32px;
+            display: flex;
+            flex-direction: column;
+            gap: 0;
+            transition: border-color 0.25s, transform 0.25s, box-shadow 0.25s, background 0.25s;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 24px 64px rgba(0,0,0,0.16);
+            backdrop-filter: blur(16px);
+        }
+        .project-card::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0;
+            width: 4px; height: 100%;
+            background: linear-gradient(to bottom, var(--blue), transparent);
+            opacity: 0;
+            transition: opacity 0.25s;
+        }
+        .project-card:hover {
+            border-color: rgba(59,130,246,0.35);
+            transform: translateY(-6px);
+            box-shadow: 0 32px 86px rgba(0,0,0,0.22);
+            background: rgba(255,255,255,0.06);
+        }
+        .project-card:hover::before {
+            opacity: 1;
+        }
+
+        .project-num {
+            font-family: var(--font-mono);
+            font-size: 0.75rem;
+            color: var(--text-dim);
+            letter-spacing: 1px;
+            margin-bottom: 12px;
+        }
+
+        .project-title {
+            font-family: var(--font-display);
+            font-size: 1.22rem;
+            font-weight: 800;
+            color: var(--text);
+            margin-bottom: 10px;
+            line-height: 1.25;
+        }
+
+        .project-tech {
+            font-size: 0.82rem;
+            color: var(--orange-light);
+            font-weight: 700;
+            font-family: var(--font-mono);
+            margin-bottom: 18px;
+        }
+
+        .project-bullets {
+            padding-left: 0;
+            margin-bottom: 24px;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            flex-grow: 1;
+        }
+        .project-bullets li {
+            font-size: 0.9rem;
+            color: var(--text-muted);
+            line-height: 1.65;
+            display: flex;
+            gap: 10px;
+            align-items: flex-start;
+        }
+        .project-bullets li::before {
+            content: '▹';
+            color: var(--blue);
+            font-size: 0.95rem;
+            flex-shrink: 0;
+            margin-top: 2px;
+        }
+
+        .project-footer {
+            display: flex;
+            gap: 14px;
+            margin-top: auto;
+            flex-wrap: wrap;
+        }
+
+        .cat-label {
+            position: absolute;
+            top: 18px; right: 18px;
+        }
+
+        .project-card.hidden {
+            display: none;
+        }
+
+        .results-count {
+            font-family: var(--font-mono);
+            font-size: 0.85rem;
+            color: var(--text-dim);
+            margin-bottom: 28px;
+        }
+        .results-count span { color: var(--blue-light); }
+
+        @media (max-width: 920px) {
+            .projects-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- ═══ HEADER / NAV ═══════════════════════════════════ -->
+    <header class="site-header">
+        <div class="nav-inner">
+            <a href="index.html" class="logo">DEEPAK<span class="dot">.</span>S</a>
+            <nav class="nav-links" aria-label="Main navigation">
+                <a href="index.html"    class="nav-link" data-page="index">Home</a>
+                <a href="about.html"    class="nav-link" data-page="about">About</a>
+                <a href="projects.html" class="nav-link" data-page="projects">Projects</a>
+                <a href="skills.html"   class="nav-link" data-page="skills">Skills</a>
+                <a href="certifications.html" class="nav-link" data-page="certifications">Certifications</a>
+                <a href="contact.html"  class="nav-link nav-cta" data-page="contact">Hire Me</a>
+            </nav>
+            <button class="hamburger" id="hamburger" aria-label="Toggle menu">
+                <span></span><span></span><span></span>
+            </button>
+        </div>
+        <nav class="mobile-menu" id="mobileMenu" aria-label="Mobile navigation">
+            <a href="index.html"    class="mobile-nav-link" data-page="index">Home</a>
+            <a href="about.html"    class="mobile-nav-link" data-page="about">About</a>
+            <a href="projects.html" class="mobile-nav-link" data-page="projects">Projects</a>
+            <a href="skills.html"   class="mobile-nav-link" data-page="skills">Skills</a>
+            <a href="certifications.html" class="mobile-nav-link" data-page="certifications">Certifications</a>
+            <a href="contact.html"  class="mobile-nav-link" data-page="contact">Contact / Hire Me</a>
+        </nav>
+    </header>
+
+    <!-- ═══ MAIN ════════════════════════════════════════════ -->
+    <div class="page-wrapper">
+        <main>
+            <!-- Page hero band -->
+            <div class="page-hero">
+                <div class="container">
+                    <span class="label anim-1">Portfolio</span>
+                    <h1 class="heading anim-2">Projects Showcase<br><em>— all cloud hosted</em></h1>
+                    <div class="divider anim-3"></div>
+                </div>
+            </div>
+
+            <section class="section">
+                <div class="container">
+                    <!-- Filter bar -->
+                    <div class="filter-bar anim-1">
+                        <button class="filter-btn active" onclick="filterProjects(this, 'all')">All Projects</button>
+                        <button class="filter-btn" onclick="filterProjects(this, 'fullstack')">MERN Full Stack</button>
+                        <button class="filter-btn" onclick="filterProjects(this, 'frontend')">Frontend / UI</button>
+                    </div>
+
+                    <div class="results-count anim-2" id="resultsCount">
+                        Showing <span id="countNum">12</span> projects
+                    </div>
+
+                    <!-- Projects grid -->
+                    <div class="projects-grid" id="projectsGrid">
+
+                        <!-- 1 -->
+                        <div class="project-card anim-1" data-cat="fullstack">
+                            <div class="cat-label"><span class="tag">MERN Stack</span></div>
+                            <div class="project-num">PROJECT / 01</div>
+                            <div class="project-title">Enterprise Store Management System</div>
+                            <div class="project-tech">React.js · Node.js · Express.js · MongoDB · Vercel Cloud</div>
+                            <ul class="project-bullets">
+                                <li>Built production-ready full-stack inventory system with real-time stock tracking and multi-user access.</li>
+                                <li>Architected secure RESTful APIs with JWT authentication, role-based authorization, and database optimization.</li>
+                                <li>Implemented complete CRUD operations with pagination, filtering, and advanced search capabilities.</li>
+                                <li>Deployed on Vercel with MongoDB cloud database for 99.9% uptime availability.</li>
+                            </ul>
+                            <div class="project-footer">
+                                <a href="https://store-management-rose.vercel.app/" target="_blank" class="btn btn-primary">Live Demo</a>
+                                <a href="https://github.com/Deepak-1006S/Store_management.git" target="_blank" class="btn btn-secondary">Source Code</a>
+                            </div>
+                        </div>
+
+                        <!-- 2 -->
+                        <div class="project-card anim-2" data-cat="frontend">
+                            <div class="cat-label"><span class="tag tag-orange">Frontend / JS</span></div>
+                            <div class="project-num">PROJECT / 02</div>
+                            <div class="project-title">Harry Potter Chatbot</div>
+                            <div class="project-tech">JavaScript · State Logic · Vercel Deployment</div>
+                            <ul class="project-bullets">
+                                <li>Developed interactive rule-based chatbot with 50+ conversation flows and decision trees.</li>
+                                <li>Implemented advanced state management for multi-turn conversations and user context preservation.</li>
+                                <li>Designed responsive UI with instant response handling and theme customization.</li>
+                                <li>Deployed with Vercel for fast CDN delivery and optimized performance.</li>
+                            </ul>
+                            <div class="project-footer">
+                                <a href="https://harrypotter-chatbot.vercel.app/" target="_blank" class="btn btn-primary">Live Demo</a>
+                                <a href="https://github.com/Deepak-1006S/harrypotter-chatbot.git" target="_blank" class="btn btn-secondary">Source Code</a>
+                            </div>
+                        </div>
+
+                        <!-- 3 -->
+                        <div class="project-card anim-3" data-cat="frontend">
+                            <div class="cat-label"><span class="tag tag-orange">React.js</span></div>
+                            <div class="project-num">PROJECT / 03</div>
+                            <div class="project-title">Foodie App</div>
+                            <div class="project-tech">React.js · CSS · Responsive UI</div>
+                            <ul class="project-bullets">
+                                <li>Developed responsive food ordering interface with product catalog and dynamic filtering.</li>
+                                <li>Implemented cart management with add/remove items, quantity updates, and total calculation.</li>
+                                <li>Created reusable component architecture for scalability and maintainability.</li>
+                                <li>Optimized mobile experience with touch-friendly UI and fast load times.</li>
+                            </ul>
+                            <div class="project-footer">
+                                <a href="https://foodie-app-pink.vercel.app/" target="_blank" class="btn btn-primary">Live Demo</a>
+                                <a href="https://github.com/Deepak-1006S/FoodieApp.git" target="_blank" class="btn btn-secondary">Source Code</a>
+                            </div>
+                        </div>
+
+                        <!-- 4 -->
+                        <div class="project-card anim-4" data-cat="fullstack">
+                            <div class="cat-label"><span class="tag">React + Context</span></div>
+                            <div class="project-num">PROJECT / 04</div>
+                            <div class="project-title">FlowSync Workflow Management</div>
+                            <div class="project-tech">React.js · Context API · State Management</div>
+                            <ul class="project-bullets">
+                                <li>Built comprehensive workflow management system for task tracking and team collaboration.</li>
+                                <li>Implemented Context API for global state management across 10+ components.</li>
+                                <li>Created drag-and-drop task boards with status filtering and priority sorting.</li>
+                                <li>Designed modular component architecture with reusable hooks for scalability.</li>
+                            </ul>
+                            <div class="project-footer">
+                                <a href="https://flowsync-workflow-management-fronte.vercel.app/" target="_blank" class="btn btn-primary">Live Demo</a>
+                                <a href="https://github.com/Deepak-1006S/Flowsync-Workflow-Management-frontend.git" target="_blank" class="btn btn-secondary">Source Code</a>
+                            </div>
+                        </div>
+
+                        <!-- 5 -->
+                        <div class="project-card anim-5" data-cat="frontend">
+                            <div class="cat-label"><span class="tag tag-orange">E-Commerce</span></div>
+                            <div class="project-num">PROJECT / 05</div>
+                            <div class="project-title">E-Commerce Platform</div>
+                            <div class="project-tech">React.js · JavaScript · Cart System</div>
+                            <ul class="project-bullets">
+                                <li>Developed full-featured e-commerce platform with 100+ product listings and dynamic filtering.</li>
+                                <li>Implemented sophisticated cart system with persistent storage using localStorage.</li>
+                                <li>Created product detail pages with image galleries and customer reviews.</li>
+                                <li>Optimized checkout flow with order summary and payment integration UI.</li>
+                            </ul>
+                            <div class="project-footer">
+                                <a href="https://e-commerce-sigma-ochre-92.vercel.app/" target="_blank" class="btn btn-primary">Live Demo</a>
+                                <a href="https://github.com/Deepak-1006S/E-Commerce.git" target="_blank" class="btn btn-secondary">Source Code</a>
+                            </div>
+                        </div>
+
+                        <!-- 6 -->
+                        <div class="project-card anim-6" data-cat="frontend">
+                            <div class="cat-label"><span class="tag tag-green">Real-Time</span></div>
+                            <div class="project-num">PROJECT / 06</div>
+                            <div class="project-title">Real-Time Collaboration Platform</div>
+                            <div class="project-tech">React.js · UI Design · Collaboration Concept</div>
+                            <ul class="project-bullets">
+                                <li>Designed real-time collaboration interface for team-based project visualization.</li>
+                                <li>Implemented multi-user presence indicators and activity notifications.</li>
+                                <li>Created responsive layout supporting simultaneous editing and live cursor tracking.</li>
+                                <li>Built notification system for project updates and team member interactions.</li>
+                            </ul>
+                            <div class="project-footer">
+                                <a href="https://scale-realtime-collabration.vercel.app/" target="_blank" class="btn btn-primary">Live Demo</a>
+                                <a href="https://github.com/Deepak-1006S/Scale--Realtime-collabration.git" target="_blank" class="btn btn-secondary">Source Code</a>
+                            </div>
+                        </div>
+                        <div class="project-card anim-7" data-cat="frontend">
+    <div class="cat-label"><span class="tag tag-blue">AI SaaS</span></div>
+    <div class="project-num">PROJECT / 07</div>
+    <div class="project-title">AI CRM Dashboard</div>
+    <div class="project-tech">React.js · TypeScript · Vite · Dashboard UI</div>
+    <ul class="project-bullets">
+        <li>Designed modern AI-powered CRM dashboard with real-time customer analytics and insights.</li>
+        <li>Implemented interactive charts, KPI tracking, and predictive analytics visualizations.</li>
+        <li>Built customer segmentation view with behavioral analysis and engagement metrics.</li>
+        <li>Created responsive dashboard adaptable for desktop, tablet, and mobile views.</li>
+    </ul>
+    <div class="project-footer">
+        <a href="https://ai-crm-dashboard-two.vercel.app/" target="_blank" class="btn btn-primary">Live Demo</a>
+        <a href="https://github.com/Deepak-1006S/AI-CRM-Dashboard" target="_blank" class="btn btn-secondary">Source Code</a>
+    </div>
+</div>
+                        <div class="project-card anim-8" data-cat="frontend">
+    <div class="cat-label"><span class="tag tag-green">AI Support</span></div>
+    <div class="project-num">PROJECT / 08</div>
+    <div class="project-title">AI Customer Support Platform</div>
+    <div class="project-tech">React.js · TypeScript · Vite · SaaS UI</div>
+    <ul class="project-bullets">
+        <li>Built professional AI-powered customer support platform with conversational chatbot interface.</li>
+        <li>Implemented ticket management system with priority routing and automated categorization.</li>
+        <li>Created multi-channel support dashboard integrating email, chat, and social channels.</li>
+        <li>Designed knowledge base search and AI-suggested responses for faster resolution times.</li>
+    </ul>
+    <div class="project-footer">
+        <a href="https://ai-customer-support-platform-lac.vercel.app/" target="_blank" class="btn btn-primary">Live Demo</a>
+        <a href="https://github.com/Deepak-1006S/AI-customer-support-platform" target="_blank" class="btn btn-secondary">Source Code</a>
+    </div>
+</div>
+
+                        <!-- 9 -->
+                        <div class="project-card anim-9" data-cat="fullstack">
+                            <div class="cat-label"><span class="tag">GPT-4o AI</span></div>
+                            <div class="project-num">PROJECT / 09</div>
+                            <div class="project-title">Interview-Ace AI — Interview Prep Platform</div>
+                            <div class="project-tech">React.js · Vite · Tailwind CSS · GPT-4o API · Vercel</div>
+                            <ul class="project-bullets">
+                                <li>AI-powered interview preparation platform helping 50K+ users ace tech interviews at FAANG companies.</li>
+                                <li>GPT-4o powered mock interviews with realistic role-specific questions and detailed feedback.</li>
+                                <li>Resume ATS Analyzer for instant scoring, keyword gap analysis, and actionable improvements.</li>
+                                <li>8+ LeetCode-style coding challenges (Easy → Hard) with in-browser execution.</li>
+                                <li>Advanced analytics dashboard tracking performance across Frontend, Backend, DSA, and System Design.</li>
+                            </ul>
+                            <div class="project-footer">
+                                <a href="https://interview-ace-ai-frontend-three.vercel.app/" target="_blank" class="btn btn-primary">Live Demo</a>
+                                <a href="https://github.com/Deepak-1006S/Interview-Ace-AI-frontend.git" target="_blank" class="btn btn-secondary">Source Code</a>
+                            </div>
+                        </div>
+                        <!-- 10 -->
+<div class="project-card anim-10" data-cat="fullstack">
+    <div class="cat-label">
+        <span class="tag">Railway Reservation System</span></div>
+    <div class="project-num">PROJECT / 10</div>
+    <div class="project-title">Railway-X — Smart Railway Reservation Platform</div>
+    <div class="project-tech">React.js · Node.js · Express.js · MongoDB · JWT · Razorpay · Vercel</div>
+    <ul class="project-bullets">
+        <li>Full-stack railway reservation platform with real-time train search, booking, and ticket management.</li>
+        <li>Advanced train filtering based on source, destination, travel date, class type, and availability.</li>
+        <li>Secure user authentication with JWT, booking history, and downloadable e-tickets.</li>
+        <li>Integrated payment gateway for seamless ticket booking and transaction management.</li>
+        <li>Responsive modern UI with train schedules, seat availability, PNR status tracking, and booking analytics.</li>
+    </ul>
+    <div class="project-footer">
+        <a href="https://railway-x.vercel.app/" target="_blank" class="btn btn-primary">Live Demo</a>
+        <a href="https://github.com/Deepak-1006S/Railway-X.git" target="_blank" class="btn btn-secondary">Source Code</a>
+    </div>
+</div>
+                        <!-- 11 -->
+<div class="project-card anim-11" data-cat="fullstack">
+    <div class="cat-label">
+        <span class="tag">MERN Stack</span></div>
+    <div class="project-num">PROJECT / 11</div>
+    <div class="project-title">Accounting System — Financial Management Platform</div>
+    <div class="project-tech">React.js · Node.js · Express.js · MongoDB · JWT · Vercel</div>
+    <ul class="project-bullets">
+        <li>Built a full-stack accounting platform for managing income, expenses, transactions, and financial records.</li>
+        <li>Implemented secure JWT authentication, protected routes, and user-specific financial data management.</li>
+        <li>Developed interactive dashboards with real-time financial summaries, transaction history, and analytics.</li>
+        <li>Created complete CRUD operations for accounts, expenses, income tracking, and report management.</li>
+        <li>Integrated RESTful APIs with MongoDB and deployed the application using Vercel cloud infrastructure.</li>
+    </ul>
+    <div class="project-footer">
+        <a href="https://accounting-system-frontend-six.vercel.app/" target="_blank" class="btn btn-primary">Live Demo</a>
+        <a href="https://github.com/Deepak-1006S/Accounting-system-Frontend.git" target="_blank" class="btn btn-secondary">Source Code</a>
+    </div>
+</div>
+                        <div class="project-card anim-11" data-cat="fullstack">
+    <div class="cat-label">
+        <span class="tag">MERN Stack + AI SaaS</span></div>
+    <div class="project-num">PROJECT / 12</div>
+    <div class="project-title">CodeForge AI — AI Software Engineering Workspace</div>
+    <div class="project-tech">React.js · TypeScript · Node.js · Express.js · MongoDB · Socket.IO · Gemini AI · JWT · Vercel</div>
+    <ul class="project-bullets">
+        <li>Built a production-grade AI-powered engineering workspace for managing software projects, teams, and workflows.</li>
+        <li>Implemented secure authentication system with JWT, role-based access control, and protected routes for Admin, Manager, and Developer roles.</li>
+        <li>Developed full project and issue tracking system with Kanban-style workflow, status management, and team assignment features.</li>
+        <li>Integrated real-time collaboration using Socket.IO for live notifications, activity feeds, and instant project updates.</li>
+        <li>Built AI-powered assistant features using Gemini API for sprint summaries, bug explanations, and task generation.</li>
+        <li>Designed analytics dashboard with interactive charts to track productivity, project health, and issue resolution metrics.</li>
+        <li>Integrated GitHub API for repository tracking, commit history visualization, and pull request analytics.</li>
+        <li>Deployed frontend on Vercel with scalable backend architecture using Node.js and MongoDB Atlas.</li>
+    </ul>
+    <div class="project-footer">
+        <a href="https://code-forge-ai-ai-software-engineeri.vercel.app/" target="_blank" class="btn btn-primary">Live Demo</a>
+        <a href="https://github.com/Deepak-1006S/CodeForge-AI-AI-Software-Engineering-Workspace-frontend.git" target="_blank" class="btn btn-secondary">Source Code</a>
+    </div>
+</div>
+                    </div><!-- /projects-grid -->
+                </div>
+            </section>
+        </main>
+
+        <footer class="site-footer">
+            <p>deepak<span style="color:var(--blue)">.</span>s &mdash; built with precision &nbsp;|&nbsp; <a href="mailto:deepak1006.dev@gmail.com">deepak1006.dev@gmail.com</a></p>
+        </footer>
+    </div>
+
+    <script src="nav.js"></script>
+    <script src="assets/js/biodata.js"></script>
+    <script src="assets/js/ui.js" defer></script>
+    <script>
+        function filterProjects(btn, category) {
+            // Update active button
+            document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+            btn.classList.add('active');
+
+            // Show/hide cards
+            const cards = document.querySelectorAll('.project-card');
+            let visible = 0;
+            cards.forEach(card => {
+                const match = category === 'all' || card.getAttribute('data-cat') === category;
+                if (match) {
+                    card.classList.remove('hidden');
+                    visible++;
+                } else {
+                    card.classList.add('hidden');
+                }
+            });
+
+            // Update count
+            document.getElementById('countNum').textContent = visible;
+        }
+    </script>
+</body>
+</html>
